@@ -1,0 +1,11 @@
+body {
+    background-color: #eef2f7;
+}
+.navbarimg {
+    width: 9%;
+    height: 9%;
+    border-radius: 50%;
+}
+.container {
+    margin: 0;
+}

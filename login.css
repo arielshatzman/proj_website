@@ -1,0 +1,26 @@
+body {
+    /* background-color: rgba(87, 87, 87, 0.373); */
+    background-color: #eef2f7;
+}
+.navbarimg {
+    width: 9%;
+    height: 9%;
+    border-radius: 50%;
+}
+.container {
+    margin: 0;
+}
+
+#login-card {
+    align-items: center;
+    border-radius: 15px;
+}    
+#login-logo-img {
+    width: 75px;
+    height: 75px;
+    padding-top: 16px;
+}    
+
+input {
+    width: 100%;
+}
