@@ -14,6 +14,8 @@ body {
 #login-card {
     align-items: center;
     border-radius: 15px;
+    width: 360px;    /* or 400px */
+    margin: 0 auto;  /* centers it horizontally */
 }    
 #login-logo-img {
     width: 75px;
