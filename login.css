@@ -16,6 +16,7 @@ body {
     border-radius: 15px;
     width: 360px;    /* or 400px */
     margin: 0 auto;  /* centers it horizontally */
+    margin-bottom: auto;
 }    
 #login-logo-img {
     width: 75px;
