@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="contact.css">
+  <title>Home page</title>
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent" dir="ltr">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a href="home.html">
+      <img class="navbarimg" src="logo_placeholder_loginpage copy.jpeg" alt="top left corner logo">
+    </a>
+    </div>
+    </nav>
+
+  <main class="container py-5 mt-4">
+    <div class="card shadow-sm p-4 mx-auto" style="max-width: 700px;">
+      <h2 class="text-center mb-4">צור קשר</h2>
+
+      <form>
+        <!-- Name -->
+        <div class="mb-3">
+          <label for="name" class="form-label">שם מלא</label>
+          <input type="text" class="form-control" id="name" placeholder="הכנס את שמך" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="email" class="form-label">אימייל</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+        </div>
+
+        <!-- Message -->
+        <div class="mb-3">
+          <label for="message" class="form-label">הודעה</label>
+          <textarea class="form-control" id="message" rows="4" placeholder="כתוב כאן את הודעתך..." required></textarea>
+        </div>
+
+        <!-- Radio buttons -->
+        <div class="mb-3">
+          <label class="form-label">סיבת הפנייה</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="reason" id="support" value="support" checked>
+            <label class="form-check-label" for="support">תמיכה</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="reason" id="feedback" value="feedback">
+            <label class="form-check-label" for="feedback">פידבק</label>
+          </div>
+        </div>
+
+        <!-- Checkboxes -->
+        <div class="mb-3">
+          <label class="form-label">איך נוח ליצור איתך קשר?</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="byEmail" value="email">
+            <label class="form-check-label" for="byEmail">אימייל</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="byPhone" value="phone">
+            <label class="form-check-label" for="byPhone">טלפון</label>
+          </div>
+        </div>
+
+        <!-- Select -->
+        <div class="mb-3">
+          <label for="urgency" class="form-label">דחיפות</label>
+          <select class="form-select" id="urgency" required>
+            <option value="" disabled selected>בחר...</option>
+            <option value="low">נמוכה</option>
+            <option value="medium">בינונית</option>
+            <option value="high">גבוהה</option>
+          </select>
+        </div>
+
+        <!-- Submit button -->
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-primary">שלח</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+body {
+  background-color: #f5f6fa;
+}
+
+.card {
+  border-radius: 14px;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+.navbarimg {
+    width: 9%;
+    height: 9%;
+    border-radius: 50%;
+    margin-right: auto;
+}
