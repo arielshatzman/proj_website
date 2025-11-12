@@ -1,89 +1,134 @@
-<!doctype html> <!-- מגדיר לדפדפן שזהו דף HTML5 -->
-<html lang="en"> <!-- שפת הדף אנגלית -->
+<!doctype html>
+<html lang="en">
 <head>
-  <!-- תגי מטא הכרחיים -->
-  <meta charset="utf-8"> <!-- תומך בתווים בינלאומיים (כולל עברית) -->
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- הופך את הדף לרספונסיבי לניידים -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | Smart Cart System</title>
 
-  <title>Login | Smart Cart System</title> <!-- הכותרת שתופיע בלשונית הדפדפן -->
-
-  <!-- קובץ העיצוב של Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- קובץ העיצוב האישי של עמוד ההתחברות -->
   <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
-
-  <!-- סרגל ניווט אחיד לכל הדפים -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top"> <!-- fixed-top = נשאר למעלה כל הזמן -->
-    <div class="container"> <!-- מרכז את התוכן -->
-      <a class="navbar-brand d-flex align-items-center" href="home.html"> <!-- שם האתר והלוגו -->
-        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo"> <!-- תמונת לוגו -->
-        <span class="brand-text">Smart Cart</span> <!-- טקסט שם האתר -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo">
+        <span class="brand-text">Smart Cart</span>
       </a>
 
-      <!-- כפתור תפריט (מופיע רק במסכים קטנים) -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span> <!-- אייקון של "שלושה פסים" -->
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- קישורים בתפריט -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3"> <!-- ms-auto = יישור לימין -->
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li> <!-- לעמוד אודות -->
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> <!-- לעמוד צור קשר -->
-          <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li> <!-- עמוד נוכחי -->
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- אזור ההתחברות הראשי -->
-  <main class="d-flex justify-content-center align-items-center min-vh-100"> 
-    <!-- d-flex = שימוש ב-Flexbox; justify-content-center & align-items-center = מרכז את התוכן גם אנכית וגם אופקית -->
-    <!-- min-vh-100 = גובה מינימלי של 100% מגובה המסך -->
-    
-    <div class="card shadow-lg login-card text-center p-4"> <!-- כרטיס התחברות ממורכז עם צל -->
-      <img src="logo_placeholder_loginpage copy.jpeg" alt="Logo" class="login-logo mb-3"> <!-- לוגו בראש הכרטיס -->
-      <h3 class="mb-3">Welcome Back</h3> <!-- כותרת עיקרית -->
-      <p class="text-muted mb-4">Please log in to continue</p> <!-- טקסט משני -->
+  <main class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg login-card text-center p-4">
+      <img src="logo_placeholder_loginpage copy.jpeg" alt="Logo" class="login-logo mb-3">
+      <h3 class="mb-3">Welcome Back</h3>
+      <p class="text-muted mb-4">Please log in to continue</p>
 
       <!-- טופס התחברות -->
-      <form>
-        <!-- שדה אימייל -->
-        <div class="mb-3 text-start"> <!-- text-start = יישור לשמאל של תווית -->
-          <label for="email" class="form-label">Email address</label> <!-- תווית השדה -->
-          <input type="email" id="email" class="form-control" placeholder="Enter your email" required> <!-- שדה להזנת מייל -->
+      <form id="loginForm">
+        <div class="mb-3 text-start">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
         </div>
 
-        <!-- שדה סיסמה -->
         <div class="mb-3 text-start">
           <label for="password" class="form-label">Password</label>
           <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
         </div>
 
-        <!-- אפשרות "זכור אותי" -->
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <div class="form-check"> <!-- תיבת סימון -->
+          <div class="form-check">
             <input class="form-check-input" type="checkbox" id="remember">
             <label class="form-check-label" for="remember">Remember me</label>
           </div>
         </div>
 
-        <!-- כפתור התחברות -->
-        <button type="submit" class="btn btn-primary w-100 mb-3">Log In</button> <!-- w-100 = רוחב מלא -->
+        <button type="submit" class="btn btn-primary w-100 mb-3">Log In</button>
 
-        <!-- קישור לעמוד הרשמה -->
-        <p class="small">Don’t have an account? 
+        <p class="small">Don’t have an account?
           <a href="signup.html" class="text-decoration-none text-primary">Sign up</a>
         </p>
       </form>
+
+      <!-- מוצג כשכבר מחוברים -->
+      <div id="loggedInBox" class="alert alert-light border d-none mt-3">
+        You are already logged in.
+        <button id="logoutBtn" class="btn btn-outline-secondary btn-sm ms-2">Log out</button>
+      </div>
     </div>
   </main>
 
-  <!-- קובץ ה-JS של Bootstrap (נחוץ לתפריט הניווט) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    import {
+      getAuth,
+      setPersistence,
+      browserLocalPersistence,
+      browserSessionPersistence,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
+      authDomain: "freecart11.firebaseapp.com",
+      projectId: "freecart11",
+      messagingSenderId: "369725415465",
+      appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("loginForm");
+    const loggedInBox = document.getElementById("loggedInBox");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loggedInBox.classList.remove("d-none");
+        form.classList.add("d-none");
+      } else {
+        loggedInBox.classList.add("d-none");
+        form.classList.remove("d-none");
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const remember = document.getElementById("remember").checked;
+
+      try {
+        await setPersistence(auth, remember ? browserLocalPersistence : browserSessionPersistence);
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.href = "home.html";
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    logoutBtn?.addEventListener("click", async () => {
+      await signOut(auth);
+    });
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

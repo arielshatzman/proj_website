@@ -155,5 +155,28 @@
   <footer class="footer">
   <p>© 2025 Smart Cart. All rights reserved.</p>
 </footer>
+<script type="module">
+  // טעינה מה-CDN של Firebase (ללא Storage)
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAuth } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+
+  // ההגדרות שלך מ-Firebase Console
+  const firebaseConfig = {
+    apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
+    authDomain: "freecart11.firebaseapp.com",
+    projectId: "freecart11",
+    messagingSenderId: "369725415465",
+    appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
+  };
+
+  // אתחול Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  console.log("Firebase connected:", app.name);
+</script>
+
 </body>
 </html>

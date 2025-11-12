@@ -1,137 +1,153 @@
-<!doctype html> <!-- מציין שהמסמך הוא דף HTML5 -->
-<html lang="en"> <!-- מגדיר את שפת הדף לאנגלית -->
+<!doctype html>
+<html lang="en">
 <head>
-  <!-- Meta -->
-  <meta charset="utf-8"> <!-- מאפשר שימוש בתווים באנגלית/עברית -->
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- הופך את הדף לרספונסיבי (מתאים לניידים) -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up | Smart Cart System</title>
 
-  <title>Sign Up | Smart Cart System</title> <!-- כותרת הדף בלשונית הדפדפן -->
-
-  <!-- קובץ עיצוב Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- קובץ ה-CSS האישי של עמוד ההרשמה -->
   <link rel="stylesheet" href="signup.css">
 </head>
 
 <body>
-
-  <!-- סרגל ניווט אחיד לכל האתר -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top"> <!-- fixed-top = נשאר בראש הדף -->
-    <div class="container"> <!-- ממרכז את התוכן -->
-      <a class="navbar-brand d-flex align-items-center" href="home.html"> <!-- לוגו + שם האתר -->
-        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo"> <!-- תמונת לוגו -->
-        <span class="brand-text">Smart Cart</span> <!-- טקסט שם האתר -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo">
+        <span class="brand-text">Smart Cart</span>
       </a>
-
-      <!-- כפתור תפריט לניידים -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span> <!-- אייקון "שלושה פסים" -->
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
-
-      <!-- קישורי הניווט -->
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3"> <!-- ms-auto = יישור לימין -->
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li> <!-- קישור לעמוד אודות -->
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> <!-- קישור לעמוד צור קשר -->
-          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li> <!-- קישור לעמוד התחברות -->
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- אזור ההרשמה הראשי -->
-  <main class="d-flex justify-content-center align-items-center min-vh-100"> 
-    <!-- d-flex = שימוש ב-Flexbox כדי למרכז את הכרטיס גם אנכית וגם אופקית -->
-    <!-- min-vh-100 = גובה מינימלי של כל המסך -->
-
-    <div class="card shadow-lg signup-card p-4"> <!-- כרטיס לבן עם צל -->
-      <div class="text-center mb-3"> <!-- מרכז את הלוגו והכותרת -->
-        <img src="logo_placeholder_loginpage copy.jpeg" alt="Logo" class="signup-logo mb-2"> <!-- לוגו עגול קטן -->
-        <h3 class="mb-1">Create an account</h3> <!-- כותרת ראשית -->
-        <p class="text-muted mb-0">Join Smart Cart in seconds</p> <!-- טקסט תיאור קצר -->
+  <main class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg signup-card p-4">
+      <div class="text-center mb-3">
+        <img src="logo_placeholder_loginpage copy.jpeg" alt="Logo" class="signup-logo mb-2">
+        <h3 class="mb-1">Create an account</h3>
+        <p class="text-muted mb-0">Join Smart Cart in seconds</p>
       </div>
 
-      <!-- טופס הרשמה -->
-      <form novalidate> <!-- novalidate = מבטל את בדיקות הדפדפן האוטומטיות -->
-
-        <!-- שם פרטי + שם משפחה -->
-        <div class="row g-3"> <!-- g-3 = רווח בין השדות -->
+      <form id="signupForm" novalidate>
+        <div class="row g-3">
           <div class="col-sm-6">
             <label for="firstName" class="form-label">First name</label>
-            <input type="text" id="firstName" class="form-control" placeholder="Jane" required>
+            <input type="text" id="firstName" class="form-control" required>
           </div>
           <div class="col-sm-6">
             <label for="lastName" class="form-label">Last name</label>
-            <input type="text" id="lastName" class="form-control" placeholder="Doe" required>
+            <input type="text" id="lastName" class="form-control" required>
           </div>
         </div>
 
-        <!-- אימייל -->
         <div class="mt-3">
           <label for="email" class="form-label">Email address</label>
-          <input type="email" id="email" class="form-control" placeholder="name@example.com" required>
+          <input type="email" id="email" class="form-control" required>
         </div>
 
-        <!-- סיסמה -->
         <div class="mt-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+          <input type="password" id="password" class="form-control" required>
         </div>
 
-        <!-- אימות סיסמה -->
         <div class="mt-3">
           <label for="confirm" class="form-label">Confirm password</label>
-          <input type="password" id="confirm" class="form-control" placeholder="Re-enter your password" required>
+          <input type="password" id="confirm" class="form-control" required>
         </div>
 
-        <!-- טיפ קטן מתחת לשדות הסיסמה -->
-        <div class="d-flex justify-content-between align-items-center mt-3 small text-muted">
-          <span>Use 8+ characters with a mix of letters & numbers</span>
-        </div>
-
-        <!-- סימון הסכמה לתנאים -->
         <div class="form-check mt-3">
           <input class="form-check-input" type="checkbox" id="terms" required>
           <label class="form-check-label" for="terms">
-            I agree to the 
-            <a href="#" class="text-decoration-none">Terms</a> and 
-            <a href="#" class="text-decoration-none">Privacy Policy</a>.
-          </label>
-        </div>
-        <div class="form-check mt-3">
-          <input class="form-check-input" type="checkbox" id="">
-          <label class="form-check-label" >
-            Get updates about new features and offers 
+            I agree to the Terms and Privacy Policy.
           </label>
         </div>
 
-        <!-- כפתור הרשמה -->
         <button type="submit" class="btn btn-primary w-100 mt-4">Create account</button>
-
-        <!-- קישור להתחברות אם כבר יש חשבון -->
         <p class="small text-center mt-3 mb-0">
-          Already have an account? 
-          <a href="login.html" class="text-decoration-none">Log in</a>
+          Already have an account? <a href="login.html" class="text-decoration-none">Log in</a>
         </p>
       </form>
+
+      <div id="loggedInBox" class="alert alert-light border d-none mt-3">
+        You are already logged in.
+        <button id="logoutBtn" class="btn btn-outline-secondary btn-sm ms-2">Log out</button>
+      </div>
     </div>
   </main>
 
-  <!-- קובץ JS של Bootstrap להפעלת תפריט הניווט -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      updateProfile,
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
-  <!-- בדיקה פשוטה: אם הסיסמאות לא תואמות, מציג התראה -->
-  <script>
-    document.querySelector('form').addEventListener('submit', function(e) {
-      const pwd = document.getElementById('password').value;
-      const conf = document.getElementById('confirm').value;
-      if (pwd !== conf) { // אם הסיסמאות שונות
-        e.preventDefault(); // מונע שליחה
-        alert('Passwords do not match. Please try again.'); // מציג הודעה למשתמש
+    const firebaseConfig = {
+      apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
+      authDomain: "freecart11.firebaseapp.com",
+      projectId: "freecart11",
+      messagingSenderId: "369725415465",
+      appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("signupForm");
+    const loggedInBox = document.getElementById("loggedInBox");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loggedInBox.classList.remove("d-none");
+        form.classList.add("d-none");
+      } else {
+        loggedInBox.classList.add("d-none");
+        form.classList.remove("d-none");
       }
     });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const first = document.getElementById("firstName").value.trim();
+      const last = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirm = document.getElementById("confirm").value;
+      const terms = document.getElementById("terms").checked;
+
+      if (password !== confirm) return alert("Passwords do not match.");
+      if (!terms) return alert("You must agree to the Terms.");
+
+      try {
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        if (first || last) {
+          await updateProfile(cred.user, { displayName: `${first} ${last}`.trim() });
+        }
+        window.location.href = "home.html";
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+
+    logoutBtn?.addEventListener("click", async () => {
+      await signOut(auth);
+    });
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
