@@ -1,0 +1,81 @@
+/* === Base (הגדרות כלליות לדף) === */
+body {
+  background-color: #eef2f7; /* צבע רקע אחיד ובהיר לכל הדף */
+  font-family: "Segoe UI", Arial, sans-serif; /* גופן מודרני ונעים לקריאה */
+  padding-top: 84px; /* שומר על רווח מתחת ל-navbar הקבוע כדי שלא יסתיר תוכן */
+}
+
+/* === Navbar אחיד בכל האתר (כמו בעמוד ההתחברות) === */
+.navbarimg {
+  height: 48px; /* גובה הלוגו שבתוך סרגל הניווט */
+  width: auto; /* רוחב מותאם אוטומטית לפי הפרופורציות */
+  border-radius: 50%; /* מעגל את התמונה */
+  object-fit: cover; /* שומר על יחס נכון של התמונה בלי עיוות */
+}
+.navbar.fixed-top { 
+  backdrop-filter: saturate(180%) blur(8px); /* אפקט זכוכית מטושטשת מאחורי ה-navbar */
+}
+.navbar.bg-white { 
+  background: rgba(255,255,255,.9) !important; /* רקע לבן עם שקיפות קלה */
+}
+.navbar .brand-text { 
+  font-weight: 700; /* שם האתר (Smart Cart) מודגש */
+}
+.navbar .nav-link { 
+  color: #0d6efd !important; /* צבע כחול לקישורים */
+  font-weight: 500; /* טקסט בעובי בינוני */
+}
+.navbar .nav-link:hover { 
+  color: #0b5ed7 !important; /* צבע כחול כהה יותר בעת ריחוף */
+}
+.navbar .nav-link.active { 
+  color: #0a58ca !important; /* צבע ייחודי לעמוד הפעיל */
+}
+
+/* === כרטיס ההרשמה (Sign-up Card) === */
+.signup-card {
+  width: 420px; /* רוחב קבוע לכרטיס */
+  border-radius: 16px; /* פינות מעוגלות */
+  background-color: #fff; /* רקע לבן */
+  animation: fadeIn .8s ease; /* אנימציית כניסה רכה בעת טעינת העמוד */
+}
+.signup-logo {
+  width: 72px; /* רוחב הלוגו שבכרטיס */
+  height: 72px; /* גובה הלוגו */
+  border-radius: 50%; /* לוגו עגול */
+  object-fit: cover; /* חיתוך נכון של התמונה ללא עיוות */
+}
+
+/* === עיצוב לשדות הקלט ולכפתור === */
+.form-control {
+  border-radius: 12px; /* פינות מעוגלות לשדות ההזנה */
+  transition: box-shadow .25s ease; /* אפקט מעבר חלק כשלוחצים על השדה */
+}
+.form-control:focus {
+  box-shadow: 0 0 0 .2rem rgba(13,110,253,.25); /* זוהר כחול עדין סביב השדה בעת מיקוד */
+}
+.btn {
+  border-radius: 9999px; /* הופך את הכפתור לגלולה (עגול מאוד) */
+  padding: .6rem 1.2rem; /* רווח פנימי נוח – גובה ורוחב */
+  font-weight: 600; /* טקסט מודגש יותר בכפתור */
+}
+
+/* === אנימציית Fade-in === */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; /* מתחיל בלתי נראה */
+    transform: translateY(10px); /* מתחיל מעט מתחת */
+  }
+  to { 
+    opacity: 1; /* נהיה גלוי */
+    transform: translateY(0); /* חוזר למקום הרגיל */
+  }
+}
+
+/* === עיצוב רספונסיבי למסכים קטנים (טלפונים) === */
+@media (max-width: 480px) {
+  .signup-card { 
+    width: 92%; /* מקטין את רוחב הכרטיס כך שיתאים למסכים צרים */
+    padding: 1.25rem !important; /* מוסיף ריווח פנימי קטן יותר */
+  }
+}

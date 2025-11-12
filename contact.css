@@ -1,18 +1,63 @@
+/* === Base (הגדרות בסיסיות של הדף) === */
 body {
-  background-color: #f5f6fa;
+  background: #eef2f7; /* צבע רקע אפור-בהיר ונקי */
+  font-family: "Segoe UI", Arial, sans-serif; /* גופן מודרני ונעים לקריאה */
+  padding-top: 84px; /* מוסיף רווח מלמעלה כדי שה-navbar הקבוע לא יסתיר את התוכן */
 }
 
-.card {
-  border-radius: 14px;
-}
-
-h2 {
-  font-weight: 600;
-}
-
+/* === Navbar (עיצוב סרגל הניווט – אחיד בכל הדפים) === */
 .navbarimg {
-    width: 9%;
-    height: 9%;
-    border-radius: 50%;
-    margin-right: auto;
+  height: 48px; /* גובה קבוע לתמונת הלוגו */
+  width: auto; /* שומר על פרופורציות נכונות */
+  border-radius: 50%; /* הופך את התמונה לעגולה */
+  object-fit: cover; /* מתאים את התמונה לגודל תוך שמירה על יחס נכון */
+}
+
+.navbar.fixed-top {
+  backdrop-filter: saturate(180%) blur(8px); /* מוסיף אפקט "זכוכית מטושטשת" מאחורי ה-navbar */
+}
+
+.navbar.bg-white {
+  background: rgba(255,255,255,.9) !important; /* רקע לבן שקוף במקצת */
+}
+
+.navbar .brand-text {
+  font-weight: 700; /* שם האתר (Smart Cart) מודגש */
+}
+
+.navbar .nav-link {
+  color: #0d6efd !important; /* צבע כחול בהיר לקישורים בתפריט */
+  font-weight: 500; /* טקסט בעובי בינוני */
+}
+
+.navbar .nav-link:hover {
+  color: #0b5ed7 !important; /* צבע כחול כהה יותר כשמעבירים עכבר מעל הקישור */
+}
+
+.navbar .nav-link.active {
+  color: #0a58ca !important; /* צבע מיוחד לקישור של הדף הנוכחי */
+}
+
+/* === Contact Card (עיצוב כרטיס הטופס) === */
+.contact-card {
+  border-radius: 16px; /* פינות מעוגלות לכרטיס */
+  background: #fff; /* רקע לבן לטופס */
+}
+
+/* עיצוב לשדות קלט ובחירה שבתוך כרטיס */
+.contact-card .form-control,
+.contact-card .form-select {
+  border-radius: 12px; /* פינות מעוגלות לשדות הטופס */
+}
+
+/* עיצוב הכפתור */
+.btn {
+  border-radius: 9999px; /* הופך את הכפתור לעגול (כמו גלולה) */
+  padding: .6rem 1.2rem; /* ריווח פנימי (גובה ורוחב) */
+  font-weight: 600; /* טקסט מודגש מעט לכפתור */
+}
+
+/* === Responsive tweaks (התאמות למובייל) === */
+@media (max-width: 576px) { /* כללים שיחולו רק במסכים צרים – מתחת ל-576px */
+  .navbarimg { height: 44px; } /* מקטין מעט את הלוגו כדי שיתאים לגובה המסך במובייל */
 }

@@ -1,11 +1,116 @@
+/* === Base === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
 body {
-    background-color: #eef2f7;
+  background: #eef2f7;
+  font-family: "Segoe UI", Arial, sans-serif;
+  padding-top: 84px; /* fixed navbar offset */
 }
+img { display: block; }
+
+/* === Navbar === */
 .navbarimg {
-    width: 9%;
-    height: 9%;
-    border-radius: 50%;
+  height: 48px;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
 }
-.container {
-    margin: 0;
+.navbar.fixed-top { backdrop-filter: saturate(180%) blur(8px); }
+.navbar.bg-white { background: rgba(255,255,255,.9) !important; }
+.navbar .brand-text { font-weight: 700; }
+.navbar .nav-link { color: #0d6efd !important; font-weight: 500; }
+.navbar .nav-link:hover { color: #0b5ed7 !important; }
+.navbar .nav-link.active { color: #0a58ca !important; }
+
+/* === Hero === */
+.hero {
+  min-height: calc(100vh - 84px); /* viewport minus navbar */
+  display: flex;
+  align-items: center;
+  padding: 32px 0;
+}
+.hero-img {
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  animation: floatY 4s ease-in-out infinite;
+}
+@keyframes floatY {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.btn-pill { border-radius: 9999px; padding: .6rem 1.2rem; }
+
+/* === Cards & Sections === */
+.feature-card, .step-card, .cta-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.06);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s ease, transform .35s ease, box-shadow .2s ease;
+}
+.feature-card.show, .step-card.show, .cta-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.feature-card:hover, .step-card:hover {
+  box-shadow: 0 18px 38px rgba(0,0,0,.10);
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e8f0fe;
+  color: #0d6efd;
+  font-weight: 700;
+}
+.cta-card { text-align: center; }
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  background: transparent;
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* === Trim bottom scroll === */
+section.container:last-of-type {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+section.container:last-of-type > *:last-child {
+  margin-bottom: 0 !important;
+}
+/* shrink vertical gutter for the 3-card row */
+section.container .row.g-4 { --bs-gutter-y: 0.5rem; }   /* try 0 or 0.5rem */
+
+/* remove extra padding on the sections that wrap the cards */
+section.container.py-5 { padding-top: 1rem !important; padding-bottom: 0 !important; }
+
+/* kill any leftover spacing inside the last section */
+section.container:last-of-type { padding-bottom: 0 !important; margin-bottom: 0 !important; }
+section.container:last-of-type > *:last-child { margin-bottom: 0 !important; }
+
+/* tighten the CTA so it doesn’t create tall empty space */
+.cta-card { padding: 1rem !important; }
+.cta-card > *:last-child { margin-bottom: 0 !important; }
+
+
+/* === Mobile === */
+@media (max-width: 576px) {
+  .navbarimg { height: 44px; }
 }

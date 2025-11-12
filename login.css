@@ -1,29 +1,72 @@
+/* === עיצוב בסיסי לכל הדף === */
 body {
-    /* background-color: rgba(87, 87, 87, 0.373); */
-    background-color: #eef2f7;
+  background-color: #eef2f7; /* רקע בהיר ונקי */
+  font-family: "Segoe UI", Arial, sans-serif; /* גופן מודרני וקריא */
+  padding-top: 84px; /* מוסיף רווח למעלה כך שה-navbar הקבוע לא יסתיר תוכן */
 }
+
+/* === עיצוב הניווט העליון (Navbar) === */
 .navbarimg {
-    width: 9%;
-    height: 9%;
-    border-radius: 50%;
+  height: 48px; /* גובה הלוגו */
+  width: auto; /* רוחב מותאם לפרופורציות המקוריות של התמונה */
+  border-radius: 50%; /* מעגל את הלוגו */
+  object-fit: cover; /* חותך את התמונה לשמירה על יחס נכון */
 }
-.container {
-    margin: 0;
+.navbar.fixed-top {
+  backdrop-filter: saturate(180%) blur(8px); /* מוסיף אפקט של טשטוש עדין מאחורי ה-navbar */
+}
+.navbar.bg-white {
+  background: rgba(255, 255, 255, 0.9) !important; /* רקע לבן שקוף מעט */
+}
+.navbar .brand-text {
+  font-weight: 700; /* שם האתר (Smart Cart) מודגש */
+}
+.navbar .nav-link {
+  color: #0d6efd !important; /* צבע כחול לקישורים בתפריט */
+  font-weight: 500; /* טקסט מעט מודגש */
+}
+.navbar .nav-link:hover {
+  color: #0b5ed7 !important; /* כחול כהה יותר בעת ריחוף (hover) */
+}
+.navbar .nav-link.active {
+  color: #0a58ca !important; /* כחול כהה לעמוד הפעיל */
 }
 
-#login-card {
-    align-items: center;
-    border-radius: 15px;
-    width: 360px;    /* or 400px */
-    margin: 0 auto;  /* centers it horizontally */
-    margin-bottom: auto;
-}    
-#login-logo-img {
-    width: 75px;
-    height: 75px;
-    padding-top: 16px;
-}    
-
-input {
-    width: 100%;
+/* === עיצוב כרטיס ההתחברות (Login card) === */
+.login-card {
+  width: 350px; /* רוחב קבוע לכרטיס */
+  border-radius: 16px; /* פינות מעוגלות */
+  background-color: #fff; /* רקע לבן */
+  animation: fadeIn 0.8s ease; /* אנימציית כניסה עדינה בעת טעינה */
 }
+.login-logo {
+  width: 80px; /* גודל לוגו הכניסה */
+  height: 80px;
+  border-radius: 50%; /* לוגו עגול */
+  object-fit: cover; /* מוודא שהתמונה לא תתעוות */
+}
+.form-control {
+  border-radius: 12px; /* פינות מעוגלות לשדות הקלט */
+  transition: box-shadow 0.3s ease; /* מעבר חלק כשמתמקדים בשדה */
+}
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* זוהר כחול עדין סביב השדה כשנבחר */
+}
+.btn {
+  border-radius: 9999px; /* יוצר כפתור עגול בצורת גלולה */
+  padding: 0.6rem 1.2rem; /* ריווח פנימי אופקי ואנכי */
+  font-weight: 600; /* טקסט מודגש בכפתור */
+}
+
+/* === אנימציה פשוטה של Fade-In === */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* מתחיל בלתי נראה */
+    transform: translateY(10px); /* מתחיל מעט למטה */
+  }
+  to {
+    opacity: 1; /* נהיה גלוי */
+    transform: translateY(0); /* חוזר למקום הרגיל */
+  }
+}
+;

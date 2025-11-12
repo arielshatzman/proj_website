@@ -1,55 +1,99 @@
-<!doctype html>
-<html lang="en">
+<!doctype html> <!-- מציין שזהו דף HTML5 -->
+<html lang="en"> <!-- מגדיר את שפת הדף לאנגלית -->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About page</title>
+  <meta charset="utf-8"> <!-- מאפשר שימוש בתווים בינלאומיים -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- מתאים את הדף למסכים קטנים (רספונסיבי) -->
+  <title>Smart Cart | About</title> <!-- כותרת הלשונית של הדפדפן -->
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- קישור לספריית Bootstrap לעיצוב אחיד ומהיר -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- קובץ העיצוב האישי של העמוד -->
   <link rel="stylesheet" href="about.css">
 </head>
-<body class="bg-light">
-  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent"> 
-    <div class="container">
-      <a href="home.html">
-        <img class="navbarimg" src="logo_placeholder_loginpage copy.jpeg" alt="top left corner logo">
+<body>
+
+  <!-- סרגל ניווט עליון אחיד לכל הדפים -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top"> <!-- fixed-top = נשאר למעלה גם בגלילה -->
+    <div class="container"> <!-- ממרכז את התוכן לרוחב הדף -->
+      <a class="navbar-brand d-flex align-items-center" href="home.html"> <!-- קישור לעמוד הבית -->
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo"> <!-- לוגו האתר -->
+        <span class="brand-text">Smart Cart</span> <!-- טקסט שם האתר -->
       </a>
+
+      <!-- כפתור פתיחה של התפריט במסכים קטנים -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> <!-- אייקון של שלושה פסים -->
+      </button>
+
+      <!-- התפריט הנפתח עצמו -->
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3"> <!-- ms-auto = מיישר את התפריט לצד ימין -->
+          <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li> <!-- עמוד נוכחי -->
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> <!-- קישור לעמוד צור קשר -->
+          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li> <!-- קישור לעמוד התחברות -->
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <main class="container py-5 mt-4">
-    <div class="card shadow-sm p-4 text-center mx-auto" style="max-width: 800px;">
-      <h2 class="text-center mb-4">אודות הפרויקט</h2>
+  <!-- אזור הכותרת הראשית (Hero Section) -->
+  <header class="container hero text-center py-5"> <!-- text-center = מרכז את התוכן -->
+    <div class="row justify-content-center align-items-center"> <!-- ממרכז אנכית ואופקית -->
       
+      <!-- צד שמאל: טקסט -->
+      <div class="col-12 col-md-6 mb-4 mb-md-0"> <!-- בעיצוב מובייל תופס את כל השורה -->
+        <h1 class="fw-bold mb-3">About Smart Cart</h1> <!-- כותרת עיקרית -->
+        <p class="lead text-muted">
+          Revolutionizing everyday shopping through innovation, autonomy, and accessibility.
+        </p> <!-- משפט תיאור קצר -->
+      </div>
+
+      <!-- צד ימין: תמונה -->
+      <div class="col-12 col-md-6">
+        <img src="shoping_cart_consept.png" class="about-hero-img" alt="Smart Cart Concept"> <!-- תמונת העגלה החכמה -->
+      </div>
+    </div>
+  </header>
+
+  <!-- אזור התוכן הראשי של הדף -->
+  <main class="container py-5"> <!-- py-5 = ריווח עליון ותחתון -->
+    <div class="card shadow-sm p-4 p-md-5 about-card mx-auto"> <!-- כרטיס עם צל, ריווח פנימי ומרכז -->
+      <h2 class="fw-bold mb-3 text-center">Our Story</h2> <!-- כותרת משנה -->
+
+      <!-- פסקאות טקסט המתארות את הפרויקט -->
       <p>
-        הפרויקט שלנו נולד מתוך צורך ממשי לשפר את חוויית הקנייה בסופרמרקטים.
-        עגלות הסופר המסורתיות הן כבדות, מסורבלות ולעיתים קרובות גם לא תקינות,
-        מה שמקשה על התנהלות יומיומית של לקוחות – במיוחד קשישים, נשים בהריון,
-        הורים עם עגלת ילדים או אנשים בעלי מגבלות פיזיות.
+        Smart Cart was born from a real need to make shopping easier and more accessible for everyone.
+        Traditional shopping carts are heavy, awkward, and often broken — a challenge for seniors, parents,
+        or anyone carrying bags or pushing a stroller.
       </p>
 
       <p>
-        הפתרון שפיתחנו הוא עגלה חכמה ואוטונומית, אשר עוקבת אחרי הקונה בצורה עצמאית ובטוחה,
-        ללא צורך בדחיפה או במגע פיזי. באמצעות מצלמה וחיישנים מתקדמים, יחד עם טכנולוגיות של
-        עיבוד תמונה ובינה מלאכותית, העגלה מזהה את הקונה ומלווה אותו לאורך כל מהלך הקנייה.
+        Our autonomous cart follows you safely and smoothly without physical effort.
+        Using advanced sensors, a vision camera, and AI algorithms, Smart Cart recognizes its user,
+        navigates through aisles, and moves at your pace — no pushing required.
       </p>
 
       <p>
-        מערכת הבקרה מבוססת על מיקרו־בקרים ו־FPGA, המפעילים מנועים ומנגנוני היגוי לנסיעה חלקה ויציבה.
-        הנתונים מהמצלמה מעובדים בענן, והעגלה מקבלת החלטות תנועה בזמן אמת. בנוסף,
-        מבנה המערכת מאפשר שילוב עתידי של פונקציות נוספות – כמו סורק מוצרים, ניווט אל המדפים,
-        ותשלום אוטומטי ללא צורך בקופה.
+        The control system combines microcontrollers and FPGA boards that manage motors and steering mechanisms,
+        ensuring precise movement and real-time decision-making. The cart’s modular design allows future
+        features like product scanning, shelf navigation, and automatic checkout.
       </p>
 
       <p class="mb-0">
-        החזון שלנו הוא להפוך את חוויית הקנייה לנגישה, חדשנית וידידותית יותר לכולם,
-        תוך שילוב של טכנולוגיה מתקדמת בחיי היומיום.
+        Our vision is to create a smart, friendly, and accessible shopping experience by bringing
+        cutting-edge technology into daily life. Smart Cart — the future of effortless shopping.
       </p>
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- תחתית הדף -->
+  <footer class="container py-4 text-center">
+    <small class="text-muted">© 2025 Smart Cart — All rights reserved</small> <!-- זכויות יוצרים -->
+  </footer>
+
+  <!-- קובץ JavaScript של Bootstrap להפעלת תפריט הניווט -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

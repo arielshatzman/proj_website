@@ -1,43 +1,89 @@
-<!doctype html>
-<html lang="en">
+<!doctype html> <!-- מגדיר לדפדפן שזהו דף HTML5 -->
+<html lang="en"> <!-- שפת הדף אנגלית -->
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- תגי מטא הכרחיים -->
+  <meta charset="utf-8"> <!-- תומך בתווים בינלאומיים (כולל עברית) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- הופך את הדף לרספונסיבי לניידים -->
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>Login | Smart Cart System</title> <!-- הכותרת שתופיע בלשונית הדפדפן -->
+
+  <!-- קובץ העיצוב של Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- קובץ העיצוב האישי של עמוד ההתחברות -->
   <link rel="stylesheet" href="login.css">
-  <title>login page</title>
 </head>
-<body class="bg-light">
-  
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-transparent"> 
-    <div class="container">
-      <a href="home.html">
-        <img class="navbarimg" src="logo_placeholder_loginpage copy.jpeg" alt="top left corner logo">
+
+<body>
+
+  <!-- סרגל ניווט אחיד לכל הדפים -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top"> <!-- fixed-top = נשאר למעלה כל הזמן -->
+    <div class="container"> <!-- מרכז את התוכן -->
+      <a class="navbar-brand d-flex align-items-center" href="home.html"> <!-- שם האתר והלוגו -->
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo"> <!-- תמונת לוגו -->
+        <span class="brand-text">Smart Cart</span> <!-- טקסט שם האתר -->
       </a>
+
+      <!-- כפתור תפריט (מופיע רק במסכים קטנים) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span> <!-- אייקון של "שלושה פסים" -->
+      </button>
+
+      <!-- קישורים בתפריט -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3"> <!-- ms-auto = יישור לימין -->
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li> <!-- לעמוד אודות -->
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> <!-- לעמוד צור קשר -->
+          <li class="nav-item"><a class="nav-link active" href="login.html">Login</a></li> <!-- עמוד נוכחי -->
+        </ul>
+      </div>
     </div>
   </nav>
 
-  <!-- ✅ Perfectly centered card -->
-  <main class="d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card w-100 shadow-sm" id="login-card" style="max-width: 400px;">
-      <img id="login-logo-img" src="logo_placeholder_loginpage copy.jpeg" alt="logo_placeholder_loginpage" class="mx-auto mt-4" style="width:80px; height:80px;">
-      <div class="card-body">
-        <h5 class="card-title text-center">Log In</h5>
-        <div class="form-outline mb-3">
-          <input type="email" class="form-control" placeholder="ID tag">
+  <!-- אזור ההתחברות הראשי -->
+  <main class="d-flex justify-content-center align-items-center min-vh-100"> 
+    <!-- d-flex = שימוש ב-Flexbox; justify-content-center & align-items-center = מרכז את התוכן גם אנכית וגם אופקית -->
+    <!-- min-vh-100 = גובה מינימלי של 100% מגובה המסך -->
+    
+    <div class="card shadow-lg login-card text-center p-4"> <!-- כרטיס התחברות ממורכז עם צל -->
+      <img src="logo_placeholder_loginpage copy.jpeg" alt="Logo" class="login-logo mb-3"> <!-- לוגו בראש הכרטיס -->
+      <h3 class="mb-3">Welcome Back</h3> <!-- כותרת עיקרית -->
+      <p class="text-muted mb-4">Please log in to continue</p> <!-- טקסט משני -->
+
+      <!-- טופס התחברות -->
+      <form>
+        <!-- שדה אימייל -->
+        <div class="mb-3 text-start"> <!-- text-start = יישור לשמאל של תווית -->
+          <label for="email" class="form-label">Email address</label> <!-- תווית השדה -->
+          <input type="email" id="email" class="form-control" placeholder="Enter your email" required> <!-- שדה להזנת מייל -->
         </div>
-        <div class="form-outline mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+
+        <!-- שדה סיסמה -->
+        <div class="mb-3 text-start">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
         </div>
-        <button type="button" class="btn btn-outline-primary w-100">Log in</button>
-      </div>
+
+        <!-- אפשרות "זכור אותי" -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="form-check"> <!-- תיבת סימון -->
+            <input class="form-check-input" type="checkbox" id="remember">
+            <label class="form-check-label" for="remember">Remember me</label>
+          </div>
+        </div>
+
+        <!-- כפתור התחברות -->
+        <button type="submit" class="btn btn-primary w-100 mb-3">Log In</button> <!-- w-100 = רוחב מלא -->
+
+        <!-- קישור לעמוד הרשמה -->
+        <p class="small">Don’t have an account? 
+          <a href="signup.html" class="text-decoration-none text-primary">Sign up</a>
+        </p>
+      </form>
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <!-- קובץ ה-JS של Bootstrap (נחוץ לתפריט הניווט) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

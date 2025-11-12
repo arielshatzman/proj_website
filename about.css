@@ -1,28 +1,81 @@
+/* === Base (הגדרות בסיסיות לכל הדף) === */
 body {
-    /* background-color: rgba(87, 87, 87, 0.373); */
-    background-color: #eef2f7;
+  background-color: #eef2f7; /* צבע רקע אחיד ובהיר לכל הדף */
+  font-family: "Segoe UI", Arial, sans-serif; /* בחירת גופן קריא ומודרני */
+  padding-top: 84px; /* מוסיף רווח עליון כך שה-navbar הקבוע לא יסתיר תוכן */
 }
+
+/* === Navbar (עיצוב סרגל הניווט האחיד בכל הדפים) === */
 .navbarimg {
-    width: 9%;
-    height: 9%;
-    border-radius: 50%;
+  height: 48px; /* גובה הלוגו */
+  width: auto; /* רוחב אוטומטי לפי היחס המקורי של התמונה */
+  border-radius: 50%; /* הופך את התמונה לעגולה */
+  object-fit: cover; /* חותך את התמונה כך שתתאים לגודל מבלי לעוות אותה */
 }
-.container {
-    margin: 0;
+.navbar.fixed-top {
+  backdrop-filter: saturate(180%) blur(8px); /* מוסיף טשטוש עדין לרקע שמאחורי ה-navbar */
+}
+.navbar.bg-white {
+  background: rgba(255,255,255,.9) !important; /* רקע לבן שקוף מעט */
+}
+.navbar .brand-text {
+  font-weight: 700; /* מדגיש את שם המותג (Smart Cart) */
+}
+.navbar .nav-link {
+  color: #0d6efd !important; /* צבע כחול לקישורים */
+  font-weight: 500; /* טקסט בעובי בינוני */
+}
+.navbar .nav-link:hover {
+  color: #0b5ed7 !important; /* כהה יותר בריחוף (Hover) */
+}
+.navbar .nav-link.active {
+  color: #0a58ca !important; /* כחול כהה לעמוד הפעיל */
 }
 
-#login-card {
-    align-items: center;
-    border-radius: 15px;
-    width: 360px;    /* or 400px */
-    margin: 0 auto;  /* centers it horizontally */
-}    
-#login-logo-img {
-    width: 75px;
-    height: 75px;
-    padding-top: 16px;
-}    
+/* === Hero Section (כותרת עליונה עם תמונה) === */
+.hero {
+  min-height: 60vh; /* גובה מינימלי של 60% מגובה המסך */
+  display: flex; /* מסדר את התוכן בשורה אחת (טקסט + תמונה) */
+  align-items: center; /* ממרכז אנכית את התוכן */
+  justify-content: center; /* ממרכז אופקית את התוכן */
+}
+.about-hero-img {
+  max-width: 480px; /* מגביל את רוחב התמונה */
+  width: 100%; /* מאפשר לה להתאים לרוחב המסך */
+  border-radius: 20px; /* פינות מעוגלות לתמונה */
+  box-shadow: 0 18px 40px rgba(0,0,0,.1); /* צל עדין מתחת לתמונה */
+  animation: floatY 4s ease-in-out infinite; /* אנימציה של ריחוף למעלה ולמטה */
+}
+/* הגדרת האנימציה לתמונה */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); } /* בהתחלה ובסוף – במקומה הרגיל */
+  50% { transform: translateY(-10px); } /* באמצע – עולה מעט למעלה */
+}
 
-input {
-    width: 100%;
+/* === About Card (עיצוב תיבת התוכן המרכזית) === */
+.about-card {
+  max-width: 900px; /* מגביל את רוחב התיבה */
+  border-radius: 16px; /* פינות מעוגלות */
+  background-color: #fff; /* רקע לבן נקי */
+  box-shadow: 0 18px 40px rgba(0,0,0,.08); /* צל עדין סביב הכרטיס */
+}
+.about-card p {
+  color: #555; /* צבע אפור כהה לטקסט */
+  line-height: 1.7; /* ריווח בין שורות – קל יותר לקריאה */
+  margin-bottom: 1rem; /* רווח קטן אחרי כל פסקה */
+}
+.about-card h2 {
+  color: #0d6efd; /* צבע כחול לכותרת הראשית בתוך הכרטיס */
+}
+
+/* === Responsive (התאמות למסכים קטנים) === */
+@media (max-width: 768px) { /* כללים שיחולו רק על מסכים צרים (טלפונים / טאבלטים) */
+  .about-hero-img {
+    max-width: 90%; /* מקטין את רוחב התמונה */
+    margin-top: 1rem; /* מוסיף רווח מעליה */
+  }
+  .hero {
+    flex-direction: column; /* משנה את הסידור מאופקי לאנכי (תמונה מתחת לטקסט) */
+    text-align: center; /* ממרכז את כל הטקסט במובייל */
+  }
 }
