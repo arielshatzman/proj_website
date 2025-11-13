@@ -27,6 +27,14 @@ img { display: block; }
 .navbar .nav-link:hover { color: #0b5ed7 !important; }
 .navbar .nav-link.active { color: #0a58ca !important; }
 
+.hero-video {
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+}
+
 /* === Hero === */
 .hero {
   min-height: calc(100vh - 84px); /* viewport minus navbar */
