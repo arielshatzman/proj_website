@@ -1,0 +1,98 @@
+/* Styles specific to the Feedback page */
+body {
+  background: #f8fafc;
+}
+
+/* Fix: navbar overlap */
+main.container {
+  padding-top: 120px !important;
+}
+
+.card h5 {
+  margin-bottom: 0.5rem;
+}
+
+#cameraFeed {
+  border-radius: 6px;
+  background: #000;
+}
+
+#proximityBox {
+  background: linear-gradient(180deg,#ffffff,#f1f5f9);
+}
+
+.btn-sm { padding: .25rem .5rem; }
+
+@media (min-width: 992px) {
+  main.container { max-width: 980px; }
+}
+
+/* --- VIDEO PLACEHOLDER FIX --- */
+.video-wrapper {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.25));
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  gap: .5rem;
+  z-index: 10; /* ensures visibility */
+}
+
+.video-placeholder .icon {
+  font-size: 2rem;
+  opacity: 0.9;
+}
+
+.video-placeholder.hidden {
+  display: none !important;
+}
+
+.sensor-placeholder {
+  color:#475569;
+  font-weight:600;
+}
+
+.debug-banner {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050;
+  padding: .4rem .8rem;
+  background: #fff3bf;
+  color: #856404;
+  border: 1px solid #ffe69c;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.06);
+}
+
+/* Debug overlay panel — visible only in debug mode */
+.debug-overlay {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 360px;
+  max-width: calc(100% - 36px);
+  background: #ffffffee;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 10px;
+  padding: 12px;
+  z-index: 2000;
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+}
+.debug-overlay .video-wrapper { height:180px; }
+.debug-overlay h6 { margin:0 0 .5rem 0; font-size:0.95rem }
+.debug-overlay .controls { display:flex; gap:8px; margin-top:8px }
+.debug-overlay .small-muted { font-size:0.8rem; color:#6c757d }
+
+.debug-overlay.hidden { display:none !important; }
