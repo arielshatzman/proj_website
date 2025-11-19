@@ -104,7 +104,10 @@
           <div class="placeholder-box my-3">
             <div style="text-align:center">
               <div style="font-size:40px">📡</div>
-              <div id="proxPlaceholderText" class="fw-bold mt-2" style="color:#ffffff; opacity:0.95">No sensor data</div>
+              <div id="proxPlaceholderText" class="fw-bold mt-2" style="color:#ffffff; opacity:0.95">
+                No sensor data
+                <h3>Distance: <span id="distanceValue">Loading...</span></h3>
+              </div>
             </div>
           </div>
           <div class="d-flex gap-2 justify-content-center mt-2">
@@ -118,19 +121,32 @@
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script type="module">
+<script type="module">
     import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+    import { 
+      getAuth, 
+      onAuthStateChanged, 
+      signOut 
+    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+    import {
+      getDatabase,
+      ref,
+      onValue
+    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
     const fbAuthConfig = {
       apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
       authDomain: "freecart11.firebaseapp.com",
       projectId: "freecart11",
+      databaseURL: "https://freecart11-default-rtdb.europe-west1.firebasedatabase.app",
       messagingSenderId: "369725415465",
       appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
     };
 
+    // אתחול Firebase (אחד בלבד)
     if (!getApps().length) initializeApp(fbAuthConfig);
+
+    // --- Authentication setup ---
     const fbAuth = getAuth();
 
     const navFeedback = document.getElementById('nav-feedback');
@@ -157,8 +173,97 @@
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.hero, .hero-video, .hero-img').forEach(el => el.remove());
     });
-  </script>
+
+    // --- Real-time proximity sensor logic ---
+    const db = getDatabase();
+
+    // show the value inside the page (the span with id="distanceValue")
+    const distanceEl = document.getElementById("distanceValue");
+
+    const distanceRef = ref(db, "sensor/distance");
+
+    onValue(distanceRef, (snapshot) => {
+      const dist = snapshot.val();
+
+      // Update numeric display
+      if (dist === null || dist === undefined) {
+        distanceEl.textContent = "No sensor data";
+        distanceEl.style.color = "#ffffff";
+      } else {
+        distanceEl.textContent = dist + " cm";
+        if (typeof dist === 'number') {
+          if (dist < 20) distanceEl.style.color = "#ff4d4d";
+          else if (dist < 50) distanceEl.style.color = "#ffcc00";
+          else distanceEl.style.color = "#00ff99";
+        } else {
+          distanceEl.style.color = "#ffffff";
+        }
+      }
+
+      // Update proximity placeholder visuals (text + background)
+      const proxText = document.getElementById('proxPlaceholderText');
+      if (proxText) {
+        const box = proxText.closest('.placeholder-box');
+        if (dist === null || dist === undefined) {
+          proxText.innerHTML = '<div style="font-weight:600">No sensor data</div>';
+          if (box) box.style.background = '#0b61a7';
+        } else {
+          // show the numeric value prominently inside the placeholder
+          proxText.innerHTML = `\n              <div style="font-size:20px; font-weight:700;">Distance: ${dist} cm</div>\n              <div style="font-size:14px; opacity:0.9; margin-top:.25rem;">${dist < 20 ? 'Too close' : (dist < 50 ? 'Near' : 'Clear')}</div>`;
+          if (box) {
+            if (typeof dist === 'number') {
+              if (dist < 20) box.style.background = '#ff4d4d';
+              else if (dist < 50) box.style.background = '#ffcc00';
+              else box.style.background = '#0b61a7';
+            } else {
+              box.style.background = '#0b61a7';
+            }
+          }
+        }
+      }
+    });
+
+    // --- Simulator (fake sensor) with start/stop controls ---
+    let simInterval = null;
+    const startBtn = document.getElementById('startSensor');
+    const stopBtn = document.getElementById('stopSensor');
+
+    // single-step simulator: write one numeric value to RTDB
+    function fakeSensorOnce() {
+      const fakeDist = Math.floor(Math.random() * 120); // 0–120 cm
+      return fetch("https://freecart11-default-rtdb.europe-west1.firebasedatabase.app/sensor/distance.json", {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(fakeDist)
+      })
+      .then(() => console.log("Simulated:", fakeDist))
+      .catch(err => console.error("Simulation write failed:", err));
+    }
+
+    // Enable the controls on page load
+    if (startBtn && stopBtn) {
+      startBtn.disabled = false;
+      stopBtn.disabled = true;
+
+      startBtn.addEventListener('click', () => {
+        if (simInterval) return;
+        // fire once immediately, then every 1.5s
+        fakeSensorOnce();
+        simInterval = setInterval(fakeSensorOnce, 1500);
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+      });
+
+      stopBtn.addEventListener('click', () => {
+        if (!simInterval) return;
+        clearInterval(simInterval);
+        simInterval = null;
+        startBtn.disabled = false;
+        stopBtn.disabled = true;
+      });
+    }
+
+</script>
 
 </body>
 </html>
-
