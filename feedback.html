@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,46 +11,109 @@
 
   <style>
     /* Page-local overrides to keep feedback page isolated from hero layout */
-    .hero, .hero-video, .hero-img, video.hero-video { display: none !important; }
-    .container-main { padding-top: 96px; max-width: 1160px; margin: 0 auto; }
-    .container-main h1 { text-align: center; margin-bottom: 1.5rem; }
+    .hero,
+    .hero-video,
+    .hero-img,
+    video.hero-video {
+      display: none !important;
+    }
+
+    .container-main {
+      padding-top: 96px;
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .container-main h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
     /* Placeholder sizing: responsive width with dynamic minimums based on viewport */
     .placeholder-box {
-      height: 36vh;                 /* scale height with viewport */
-      min-height: 260px;           /* absolute minimum for small screens */
-      max-height: 560px;           /* avoid going too tall on large screens */
+      height: 36vh;
+      /* scale height with viewport */
+      min-height: 260px;
+      /* absolute minimum for small screens */
+      max-height: 560px;
+      /* avoid going too tall on large screens */
       border-radius: 12px;
       background: #0b61a7;
       color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      width: 90%;                   /* default relative width */
-      max-width: 920px;            /* maximum width */
-      min-width: 40vw;             /* dynamic minimum relative to viewport width */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90%;
+      /* default relative width */
+      max-width: 920px;
+      /* maximum width */
+      min-width: 40vw;
+      /* dynamic minimum relative to viewport width */
       margin: 0 auto;
     }
-    .small-muted { color: #6c757d; }
+
+    .small-muted {
+      color: #6c757d;
+    }
 
     /* Ensure columns stretch so cards match height */
-    .row.g-4 > .col-12.d-flex { display: flex; align-items: stretch; }
-    .custom-card { display:flex; flex-direction:column; }
-    .custom-card .d-flex, .custom-card .placeholder-box { flex: 1 1 auto; }
+    .row.g-4>.col-12.d-flex {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .custom-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .custom-card .d-flex,
+    .custom-card .placeholder-box {
+      flex: 1 1 auto;
+    }
 
     /* Slight media-tuning */
     @media (max-width: 575px) {
+
       /* On small screens make both placeholders equal-width and equal-height */
-      .placeholder-box { width: 100%; min-width: auto; height: 40vh; min-height: 220px; max-width: none; }
+      .placeholder-box {
+        width: 100%;
+        min-width: auto;
+        height: 40vh;
+        min-height: 220px;
+        max-width: none;
+      }
+
       /* Ensure the cards stretch and placeholders keep consistent sizing */
-      .row.g-4 > .col-12.d-flex { align-items: stretch; }
-      .custom-card { flex: 1 1 auto; }
+      .row.g-4>.col-12.d-flex {
+        align-items: stretch;
+      }
+
+      .custom-card {
+        flex: 1 1 auto;
+      }
     }
+
     @media (min-width: 1200px) {
-      .placeholder-box { min-width: 480px; }
+      .placeholder-box {
+        min-width: 480px;
+      }
     }
 
     /* Make feedback cards match site theme and equal height */
-    .custom-card { border-radius: 16px; box-shadow: 0 14px 30px rgba(0,0,0,.06); }
-    .row.g-4 > .col-12.d-flex { display: flex; }
-    .custom-card .card-body, .custom-card .card { border: none; }
+    .custom-card {
+      border-radius: 16px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .06);
+    }
+
+    .row.g-4>.col-12.d-flex {
+      display: flex;
+    }
+
+    .custom-card .card-body,
+    .custom-card .card {
+      border: none;
+    }
   </style>
 </head>
 
@@ -63,7 +127,7 @@
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -88,6 +152,10 @@
           <div class="placeholder-box my-3">
             <div style="text-align:center">
               <div style="font-size:48px">📷</div>
+              <div class="placeholder-box my-3" style="padding:0;">
+                <img id="cameraFeed" src="http://10.153.66.123:81/stream" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+              </div>
+
               <div style="font-weight:600;margin-top:.5rem">No camera data</div>
             </div>
           </div>
@@ -117,16 +185,15 @@
         </div>
       </div>
     </div>
-
   </main>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<script type="module">
+  <script type="module">
     import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-    import { 
-      getAuth, 
-      onAuthStateChanged, 
-      signOut 
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut
     } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
     import {
       getDatabase,
@@ -250,9 +317,12 @@
         startBtn.disabled = false;
         stopBtn.disabled = true;
       });
+
+      camfeed1 = getElementById('camfeed');
     }
 
-</script>
+  </script>
 
 </body>
+
 </html>
