@@ -228,17 +228,6 @@
     const startBtn = document.getElementById('startSensor');
     const stopBtn = document.getElementById('stopSensor');
 
-    // single-step simulator: write one numeric value to RTDB
-    function fakeSensorOnce() {
-      const fakeDist = Math.floor(Math.random() * 120); // 0–120 cm
-      return fetch("https://freecart11-default-rtdb.europe-west1.firebasedatabase.app/sensor/distance.json", {
-        method: "PUT",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(fakeDist)
-      })
-      .then(() => console.log("Simulated:", fakeDist))
-      .catch(err => console.error("Simulation write failed:", err));
-    }
 
     // Enable the controls on page load
     if (startBtn && stopBtn) {
