@@ -30,9 +30,10 @@
       <!-- תפריט הקישורים -->
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3"> <!-- ms-auto מזיז את הקישורים לצד ימין -->
+          <li id="nav-admin" class="nav-item" style="display:none;"><a class="nav-link" href="openContact.html">Admin Panel</a></li>
+          <li id="nav-feedback" class="nav-item d-none"><a class="nav-link" href="feedback.html">Live Feed</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li> <!-- קישור לעמוד אודות -->
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> <!-- קישור לעמוד צור קשר -->
-          <li id="nav-feedback" class="nav-item d-none"><a class="nav-link" href="feedback.html">Live Feed</a></li>
           <li id="nav-auth" class="nav-item"><a class="nav-link" href="login.html">Login</a></li> <!-- קישור/שינוי כניסה/יציאה -->
         </ul>
       </div>
@@ -155,6 +156,38 @@
         navFeedback?.classList.add('d-none');
         if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
       }
+      const navAdmin = document.getElementById('nav-admin'); // הכפתור החדש
+const ADMINS = ["arielsh2006@gmail.com","gil.agmon1@gmail.com"];
+
+onAuthStateChanged(fbAuth, (user) => {
+  if (user) {
+    navFeedback?.classList.remove('d-none');
+
+    // Admin button
+    if (navAdmin) {
+      if (ADMINS.includes(user.email)) {
+        navAdmin.style.display = 'block';
+      } else {
+        navAdmin.style.display = 'none';
+      }
+    }
+
+    if (navAuth) {
+      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
+      document.getElementById('nav-logout')?.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await signOut(fbAuth);
+        window.location.href = 'home.html';
+      });
+    }
+
+  } else {
+    navFeedback?.classList.add('d-none');
+    if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
+    if (navAdmin) navAdmin.style.display = 'none'; // מסתיר את הכפתור
+  }
+});
+
     });
   </script>
 
