@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="home.css">
 
   <style>
-    /* Page-local overrides to keep feedback page isolated from hero layout */
     .hero,
     .hero-video,
     .hero-img,
@@ -29,14 +28,10 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Placeholder sizing: responsive width with dynamic minimums based on viewport */
     .placeholder-box {
       height: 36vh;
-      /* scale height with viewport */
       min-height: 260px;
-      /* absolute minimum for small screens */
       max-height: 560px;
-      /* avoid going too tall on large screens */
       border-radius: 12px;
       background: #0b61a7;
       color: #fff;
@@ -44,11 +39,8 @@
       align-items: center;
       justify-content: center;
       width: 90%;
-      /* default relative width */
       max-width: 920px;
-      /* maximum width */
       min-width: 40vw;
-      /* dynamic minimum relative to viewport width */
       margin: 0 auto;
     }
 
@@ -56,7 +48,6 @@
       color: #6c757d;
     }
 
-    /* Ensure columns stretch so cards match height */
     .row.g-4>.col-12.d-flex {
       display: flex;
       align-items: stretch;
@@ -72,25 +63,14 @@
       flex: 1 1 auto;
     }
 
-    /* Slight media-tuning */
     @media (max-width: 575px) {
-
-      /* On small screens make both placeholders equal-width and equal-height */
       .placeholder-box {
         width: 100%;
-        min-width: auto;
-        height: 40vh;
         min-height: 220px;
-        max-width: none;
       }
 
-      /* Ensure the cards stretch and placeholders keep consistent sizing */
       .row.g-4>.col-12.d-flex {
         align-items: stretch;
-      }
-
-      .custom-card {
-        flex: 1 1 auto;
       }
     }
 
@@ -100,14 +80,9 @@
       }
     }
 
-    /* Make feedback cards match site theme and equal height */
     .custom-card {
       border-radius: 16px;
       box-shadow: 0 14px 30px rgba(0, 0, 0, .06);
-    }
-
-    .row.g-4>.col-12.d-flex {
-      display: flex;
     }
 
     .custom-card .card-body,
@@ -147,19 +122,25 @@
     <h1 class="mb-4">Live Feedback</h1>
 
     <div class="row g-4 justify-content-center justify-content-md-end">
+
+      <!-- CAMERA FEED -->
       <div class="col-12 col-md-6 d-flex">
         <div class="card p-4 text-center h-100 custom-card">
           <h5>Camera Feed</h5>
+
           <div class="placeholder-box my-3">
             <div style="text-align:center">
               <div style="font-size:48px">📷</div>
+
               <div class="placeholder-box my-3" style="padding:0;">
-                <img id="cameraFeed" src="http://10.153.66.123:81/stream" style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
+                <img id="cameraFeed" src=""
+                  style="width:100%; height:100%; object-fit:cover; border-radius:12px;">
               </div>
 
-              <div style="font-weight:600;margin-top:.5rem">No camera data</div>
+              <div id="noCameraData" style="font-weight:600;margin-top:.5rem">No camera data</div>
             </div>
           </div>
+
           <div class="d-flex gap-2 justify-content-center">
             <button class="btn btn-secondary btn-sm" disabled>Start Camera</button>
             <button class="btn btn-outline-secondary btn-sm" disabled>Stop Camera</button>
@@ -167,6 +148,7 @@
         </div>
       </div>
 
+      <!-- PROXIMITY SENSOR -->
       <div class="col-12 col-md-6 d-flex">
         <div class="card p-4 text-center h-100 custom-card">
           <h5>Proximity Sensor</h5>
@@ -185,22 +167,17 @@
           </div>
         </div>
       </div>
+
     </div>
   </main>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- FIREBASE + CAMERA STREAM LOGIC -->
   <script type="module">
     import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-    import {
-      getAuth,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-    import {
-      getDatabase,
-      ref,
-      onValue
-    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
     const fbAuthConfig = {
       apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
@@ -211,11 +188,10 @@
       appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
     };
 
-    // אתחול Firebase (אחד בלבד)
     if (!getApps().length) initializeApp(fbAuthConfig);
 
-    // --- Authentication setup ---
     const fbAuth = getAuth();
+    const db = getDatabase();
 
     const navFeedback = document.getElementById('nav-feedback');
     const navAuth = document.getElementById('nav-auth');
@@ -233,95 +209,47 @@
         }
       } else {
         navFeedback?.classList.add('d-none');
-        if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
+        navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
       }
     });
 
-    // Defensive DOM cleanup
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.hero, .hero-video, .hero-img').forEach(el => el.remove());
     });
 
-    // --- Real-time proximity sensor logic ---
-    const db = getDatabase();
-
-    // show the value inside the page (the span with id="distanceValue")
+    // --- SENSOR READING ---
     const distanceEl = document.getElementById("distanceValue");
-
     const distanceRef = ref(db, "sensor/distance");
 
     onValue(distanceRef, (snapshot) => {
       const dist = snapshot.val();
-
-      // Update numeric display
-      if (dist === null || dist === undefined) {
+      if (dist == null) {
         distanceEl.textContent = "No sensor data";
         distanceEl.style.color = "#ffffff";
       } else {
         distanceEl.textContent = dist + " cm";
-        if (typeof dist === 'number') {
-          if (dist < 20) distanceEl.style.color = "#ff4d4d";
-          else if (dist < 50) distanceEl.style.color = "#ffcc00";
-          else distanceEl.style.color = "#00ff99";
-        } else {
-          distanceEl.style.color = "#ffffff";
-        }
-      }
-
-      // Update proximity placeholder visuals (text + background)
-      const proxText = document.getElementById('proxPlaceholderText');
-      if (proxText) {
-        const box = proxText.closest('.placeholder-box');
-        if (dist === null || dist === undefined) {
-          proxText.innerHTML = '<div style="font-weight:600">No sensor data</div>';
-          if (box) box.style.background = '#0b61a7';
-        } else {
-          // show the numeric value prominently inside the placeholder
-          proxText.innerHTML = `\n              <div style="font-size:20px; font-weight:700;">Distance: ${dist} cm</div>\n              <div style="font-size:14px; opacity:0.9; margin-top:.25rem;">${dist < 20 ? 'Too close' : (dist < 50 ? 'Near' : 'Clear')}</div>`;
-          if (box) {
-            if (typeof dist === 'number') {
-              if (dist < 20) box.style.background = '#ff4d4d';
-              else if (dist < 50) box.style.background = '#ffcc00';
-              else box.style.background = '#0b61a7';
-            } else {
-              box.style.background = '#0b61a7';
-            }
-          }
-        }
       }
     });
 
-    // --- Simulator (fake sensor) with start/stop controls ---
-    let simInterval = null;
-    const startBtn = document.getElementById('startSensor');
-    const stopBtn = document.getElementById('stopSensor');
+    // ---------------------------------------------------------
+    // GET CAMERA IP FROM FIREBASE + UPDATE STREAM
+    // ---------------------------------------------------------
+    const ipRef = ref(db, "ips/ip");
 
+    onValue(ipRef, (snapshot) => {
+      const data = snapshot.val();
+      if (!data || !data.ip) return;
 
-    // Enable the controls on page load
-    if (startBtn && stopBtn) {
-      startBtn.disabled = false;
-      stopBtn.disabled = true;
+      const cameraIP = data.ip;
+      console.log("✔ Camera IP loaded from Firebase:", cameraIP);
 
-      startBtn.addEventListener('click', () => {
-        if (simInterval) return;
-        // fire once immediately, then every 1.5s
-        fakeSensorOnce();
-        simInterval = setInterval(fakeSensorOnce, 1500);
-        startBtn.disabled = true;
-        stopBtn.disabled = false;
-      });
+      const camImg = document.getElementById("cameraFeed");
+      camImg.src = `http://${cameraIP}:81/stream`;
 
-      stopBtn.addEventListener('click', () => {
-        if (!simInterval) return;
-        clearInterval(simInterval);
-        simInterval = null;
-        startBtn.disabled = false;
-        stopBtn.disabled = true;
-      });
-
-      camfeed1 = getElementById('camfeed');
-    }
-
+      // הסתרת "No camera data" כשיש פיד
+      const noCameraText = document.getElementById("noCameraData");
+      if (noCameraText) noCameraText.style.display = "none";
+    });
   </script>
 
 </body>
