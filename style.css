@@ -1,0 +1,49 @@
+/* === Base === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+}
+body {
+  background: #eef2f7;
+  font-family: "Segoe UI", Arial, sans-serif;
+  padding-top: 84px; /* fixed navbar offset */
+}
+img { display: block; }
+
+/* === Navbar === */
+.navbarimg {
+  height: 48px;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.navbar.fixed-top { backdrop-filter: saturate(180%) blur(8px); }
+.navbar.bg-white { background: rgba(255,255,255,.9) !important; }
+.navbar .brand-text { font-weight: 700; }
+.navbar .nav-link { color: #0d6efd !important; font-weight: 500; }
+.navbar .nav-link:hover { color: #0b5ed7 !important; }
+.navbar .nav-link.active { color: #0a58ca !important; }
+
+/* === Mobile === */
+@media (max-width: 576px) {
+  .navbarimg { height: 44px; }
+}
+
+/* Add a small side margin on phones for better breathing room */
+@media (max-width: 576px) {
+  /* keep the navbar offset while adding horizontal padding */
+  body {
+    /* preserve top padding (navbar) and add small horizontal padding */
+    padding-top: 84px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* Ensure containers don't overflow the new body padding */
+  .container {
+    box-sizing: border-box;
+  }
+}

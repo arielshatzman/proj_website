@@ -1,71 +1,40 @@
-/* === עיצוב בסיסי לכל הדף === */
-body {
-  background-color: #eef2f7; /* רקע בהיר ונקי */
-  font-family: "Segoe UI", Arial, sans-serif; /* גופן מודרני וקריא */
-  padding-top: 84px; /* מוסיף רווח למעלה כך שה-navbar הקבוע לא יסתיר תוכן */
-}
-
-/* === עיצוב הניווט העליון (Navbar) === */
-.navbarimg {
-  height: 48px; /* גובה הלוגו */
-  width: auto; /* רוחב מותאם לפרופורציות המקוריות של התמונה */
-  border-radius: 50%; /* מעגל את הלוגו */
-  object-fit: cover; /* חותך את התמונה לשמירה על יחס נכון */
-}
-.navbar.fixed-top {
-  backdrop-filter: saturate(180%) blur(8px); /* מוסיף אפקט של טשטוש עדין מאחורי ה-navbar */
-}
-.navbar.bg-white {
-  background: rgba(255, 255, 255, 0.9) !important; /* רקע לבן שקוף מעט */
-}
-.navbar .brand-text {
-  font-weight: 700; /* שם האתר (Smart Cart) מודגש */
-}
-.navbar .nav-link {
-  color: #0d6efd !important; /* צבע כחול לקישורים בתפריט */
-  font-weight: 500; /* טקסט מעט מודגש */
-}
-.navbar .nav-link:hover {
-  color: #0b5ed7 !important; /* כחול כהה יותר בעת ריחוף (hover) */
-}
-.navbar .nav-link.active {
-  color: #0a58ca !important; /* כחול כהה לעמוד הפעיל */
-}
-
-/* === עיצוב כרטיס ההתחברות (Login card) === */
+/* === Login card === */
 .login-card {
-  width: 350px; /* רוחב קבוע לכרטיס */
-  border-radius: 16px; /* פינות מעוגלות */
-  background-color: #fff; /* רקע לבן */
-  animation: fadeIn 0.8s ease; /* אנימציית כניסה עדינה בעת טעינה */
-}
-.login-logo {
-  width: 80px; /* גודל לוגו הכניסה */
-  height: 80px;
-  border-radius: 50%; /* לוגו עגול */
-  object-fit: cover; /* מוודא שהתמונה לא תתעוות */
-}
-.form-control {
-  border-radius: 12px; /* פינות מעוגלות לשדות הקלט */
-  transition: box-shadow 0.3s ease; /* מעבר חלק כשמתמקדים בשדה */
-}
-.form-control:focus {
-  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25); /* זוהר כחול עדין סביב השדה כשנבחר */
-}
-.btn {
-  border-radius: 9999px; /* יוצר כפתור עגול בצורת גלולה */
-  padding: 0.6rem 1.2rem; /* ריווח פנימי אופקי ואנכי */
-  font-weight: 600; /* טקסט מודגש בכפתור */
+  width: 350px;
+  border-radius: 16px;
+  background-color: #fff;
+  animation: fadeIn 0.8s ease;
 }
 
-/* === אנימציה פשוטה של Fade-In === */
+.login-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.form-control {
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.btn {
+  border-radius: 9999px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+}
+
 @keyframes fadeIn {
   from {
-    opacity: 0; /* מתחיל בלתי נראה */
-    transform: translateY(10px); /* מתחיל מעט למטה */
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    opacity: 1; /* נהיה גלוי */
-    transform: translateY(0); /* חוזר למקום הרגיל */
+    opacity: 1;
+    transform: translateY(0);
   }
-};
+}

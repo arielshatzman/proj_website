@@ -1,28 +1,31 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sign Up | Smart Cart System</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="signup.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="signup.css" />
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="home.html">
-        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo">
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo" />
         <span class="brand-text">Smart Cart</span>
       </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
-          <li class="nav-item"><a class="nav-link active" href="openContact.html">Admin Panel </a></li>
+          <li class="nav-item"><a class="nav-link active" href="openContact.html">Admin Panel</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li id="nav-feedback" class="nav-item d-none"><a class="nav-link" href="feedback.html">Live Feed</a></li>
@@ -35,7 +38,7 @@
   <main class="d-flex justify-content-center align-items-center min-vh-100">
     <div class="card shadow-lg signup-card p-4">
       <div class="text-center mb-3">
-        <img src="logo_placeholder_loginpage copy.jpeg" alt="Logo" class="signup-logo mb-2">
+        <img src="logo_placeholder_loginpage copy.jpeg" alt="Logo" class="signup-logo mb-2" />
         <h3 class="mb-1">Create an account</h3>
         <p class="text-muted mb-0">Join Smart Cart in seconds</p>
       </div>
@@ -44,37 +47,38 @@
         <div class="row g-3">
           <div class="col-sm-6">
             <label for="firstName" class="form-label">First name</label>
-            <input type="text" id="firstName" class="form-control" required>
+            <input type="text" id="firstName" class="form-control" required />
           </div>
           <div class="col-sm-6">
             <label for="lastName" class="form-label">Last name</label>
-            <input type="text" id="lastName" class="form-control" required>
+            <input type="text" id="lastName" class="form-control" required />
           </div>
         </div>
 
         <div class="mt-3">
           <label for="email" class="form-label">Email address</label>
-          <input type="email" id="email" class="form-control" required>
+          <input type="email" id="email" class="form-control" required />
         </div>
 
         <div class="mt-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" id="password" class="form-control" required>
+          <input type="password" id="password" class="form-control" required />
         </div>
 
         <div class="mt-3">
           <label for="confirm" class="form-label">Confirm password</label>
-          <input type="password" id="confirm" class="form-control" required>
+          <input type="password" id="confirm" class="form-control" required />
         </div>
 
         <div class="form-check mt-3">
-          <input class="form-check-input" type="checkbox" id="terms" required>
+          <input class="form-check-input" type="checkbox" id="terms" required />
           <label class="form-check-label" for="terms">
             I agree to the Terms and Privacy Policy.
           </label>
         </div>
 
         <button type="submit" class="btn btn-primary w-100 mt-4">Create account</button>
+
         <p class="small text-center mt-3 mb-0">
           Already have an account? <a href="login.html" class="text-decoration-none">Log in</a>
         </p>
@@ -87,105 +91,7 @@
     </div>
   </main>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-    import {
-      getAuth,
-      createUserWithEmailAndPassword,
-      updateProfile,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
-      authDomain: "freecart11.firebaseapp.com",
-      projectId: "freecart11",
-      messagingSenderId: "369725415465",
-      appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const form = document.getElementById("signupForm");
-    const loggedInBox = document.getElementById("loggedInBox");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        loggedInBox.classList.remove("d-none");
-        form.classList.add("d-none");
-      } else {
-        loggedInBox.classList.add("d-none");
-        form.classList.remove("d-none");
-      }
-    });
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const first = document.getElementById("firstName").value.trim();
-      const last = document.getElementById("lastName").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-      const confirm = document.getElementById("confirm").value;
-      const terms = document.getElementById("terms").checked;
-
-      if (password !== confirm) return alert("Passwords do not match.");
-      if (!terms) return alert("You must agree to the Terms.");
-
-      try {
-        const cred = await createUserWithEmailAndPassword(auth, email, password);
-        if (first || last) {
-          await updateProfile(cred.user, { displayName: `${first} ${last}`.trim() });
-        }
-        window.location.href = "home.html";
-      } catch (err) {
-        alert(err.message);
-      }
-    });
-
-    logoutBtn?.addEventListener("click", async () => {
-      await signOut(auth);
-    });
-  </script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module">
-    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-
-    const fbAuthConfig = {
-      apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
-      authDomain: "freecart11.firebaseapp.com",
-      projectId: "freecart11",
-      messagingSenderId: "369725415465",
-      appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
-    };
-
-    if (!getApps().length) initializeApp(fbAuthConfig);
-    const fbAuth = getAuth();
-
-    const navFeedback = document.getElementById('nav-feedback');
-    const navAuth = document.getElementById('nav-auth');
-
-    onAuthStateChanged(fbAuth, (user) => {
-      if (user) {
-        navFeedback?.classList.remove('d-none');
-        if (navAuth) {
-          navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
-          document.getElementById('nav-logout')?.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await signOut(fbAuth);
-            window.location.href = 'home.html';
-          });
-        }
-      } else {
-        navFeedback?.classList.add('d-none');
-        if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
-      }
-    });
-  </script>
+  <script type="module" src="signup.js"></script>
 </body>
 </html>
-

@@ -1,63 +1,70 @@
-/* === Base (הגדרות בסיסיות של הדף) === */
-body {
-  background: #eef2f7; /* צבע רקע אפור-בהיר ונקי */
-  font-family: "Segoe UI", Arial, sans-serif; /* גופן מודרני ונעים לקריאה */
-  padding-top: 84px; /* מוסיף רווח מלמעלה כדי שה-navbar הקבוע לא יסתיר את התוכן */
+/* === Base === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  padding-top: 84px;
+  background: #eef2f7;
 }
 
-/* === Navbar (עיצוב סרגל הניווט – אחיד בכל הדפים) === */
+/* === Navbar === */
 .navbarimg {
-  height: 48px; /* גובה קבוע לתמונת הלוגו */
-  width: auto; /* שומר על פרופורציות נכונות */
-  border-radius: 50%; /* הופך את התמונה לעגולה */
-  object-fit: cover; /* מתאים את התמונה לגודל תוך שמירה על יחס נכון */
+  height: 48px;
+  width: auto;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.navbar.fixed-top {
-  backdrop-filter: saturate(180%) blur(8px); /* מוסיף אפקט "זכוכית מטושטשת" מאחורי ה-navbar */
-}
-
-.navbar.bg-white {
-  background: rgba(255,255,255,.9) !important; /* רקע לבן שקוף במקצת */
-}
-
-.navbar .brand-text {
-  font-weight: 700; /* שם האתר (Smart Cart) מודגש */
-}
+.navbar .brand-text { font-weight: 700; }
 
 .navbar .nav-link {
-  color: #0d6efd !important; /* צבע כחול בהיר לקישורים בתפריט */
-  font-weight: 500; /* טקסט בעובי בינוני */
+  color: #0d6efd !important;
+  font-weight: 500;
 }
+.navbar .nav-link:hover { color: #0b5ed7 !important; }
+.navbar .nav-link.active { color: #0a58ca !important; }
 
-.navbar .nav-link:hover {
-  color: #0b5ed7 !important; /* צבע כחול כהה יותר כשמעבירים עכבר מעל הקישור */
-}
-
-.navbar .nav-link.active {
-  color: #0a58ca !important; /* צבע מיוחד לקישור של הדף הנוכחי */
-}
-
-/* === Contact Card (עיצוב כרטיס הטופס) === */
+/* === Contact card === */
 .contact-card {
-  border-radius: 16px; /* פינות מעוגלות לכרטיס */
-  background: #fff; /* רקע לבן לטופס */
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(0,0,0,.06);
+  transition: transform .35s ease, opacity .5s ease;
+  opacity: 0;
+  transform: translateY(14px);
+}
+.contact-card.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* עיצוב לשדות קלט ובחירה שבתוך כרטיס */
 .contact-card .form-control,
 .contact-card .form-select {
-  border-radius: 12px; /* פינות מעוגלות לשדות הטופס */
+  border-radius: 12px;
 }
 
-/* עיצוב הכפתור */
+/* === Buttons === */
 .btn {
-  border-radius: 9999px; /* הופך את הכפתור לעגול (כמו גלולה) */
-  padding: .6rem 1.2rem; /* ריווח פנימי (גובה ורוחב) */
-  font-weight: 600; /* טקסט מודגש מעט לכפתור */
+  border-radius: 9999px;
+  padding: .6rem 1.2rem;
+  font-weight: 600;
+}
+.btn-success {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
 }
 
-/* === Responsive tweaks (התאמות למובייל) === */
-@media (max-width: 576px) { /* כללים שיחולו רק במסכים צרים – מתחת ל-576px */
-  .navbarimg { height: 44px; } /* מקטין מעט את הלוגו כדי שיתאים לגובה המסך במובייל */
+/* === Footer === */
+footer {
+  text-align: center;
+  color: #6c757d;
+  font-size: .9rem;
+  margin-top: 2rem;
+}
+
+/* === Responsive tweaks === */
+@media (max-width: 576px) {
+  .navbarimg { height: 44px; }
+  body { padding-left: 12px; padding-right: 12px; }
 }

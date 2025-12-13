@@ -1,32 +1,4 @@
-/* === Base === */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overscroll-behavior-y: none;
-}
-body {
-  background: #eef2f7;
-  font-family: "Segoe UI", Arial, sans-serif;
-  padding-top: 84px; /* fixed navbar offset */
-}
-img { display: block; }
-
-/* === Navbar === */
-.navbarimg {
-  height: 48px;
-  width: auto;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.navbar.fixed-top { backdrop-filter: saturate(180%) blur(8px); }
-.navbar.bg-white { background: rgba(255,255,255,.9) !important; }
-.navbar .brand-text { font-weight: 700; }
-.navbar .nav-link { color: #0d6efd !important; font-weight: 500; }
-.navbar .nav-link:hover { color: #0b5ed7 !important; }
-.navbar .nav-link.active { color: #0a58ca !important; }
-
+/* === Hero media === */
 .hero-video {
   max-width: 520px;
   width: 100%;
@@ -42,22 +14,16 @@ img { display: block; }
   align-items: center;
   padding: 32px 0;
 }
-.hero-img {
-  max-width: 520px;
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 18px 40px rgba(0,0,0,.12);
-  animation: floatY 4s ease-in-out infinite;
+
+.btn-pill {
+  border-radius: 9999px;
+  padding: .6rem 1.2rem;
 }
-@keyframes floatY {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-.btn-pill { border-radius: 9999px; padding: .6rem 1.2rem; }
 
 /* === Cards & Sections === */
-.feature-card, .step-card, .cta-card {
+.feature-card,
+.step-card,
+.cta-card {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 14px 30px rgba(0,0,0,.06);
@@ -65,13 +31,19 @@ img { display: block; }
   transform: translateY(14px);
   transition: opacity .5s ease, transform .35s ease, box-shadow .2s ease;
 }
-.feature-card.show, .step-card.show, .cta-card.show {
+
+.feature-card.show,
+.step-card.show,
+.cta-card.show {
   opacity: 1;
   transform: translateY(0);
 }
-.feature-card:hover, .step-card:hover {
+
+.feature-card:hover,
+.step-card:hover {
   box-shadow: 0 18px 38px rgba(0,0,0,.10);
 }
+
 .step-num {
   display: inline-flex;
   align-items: center;
@@ -83,6 +55,7 @@ img { display: block; }
   color: #0d6efd;
   font-weight: 700;
 }
+
 .cta-card { text-align: center; }
 
 /* === Footer === */
@@ -100,41 +73,18 @@ section.container:last-of-type {
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
+
 section.container:last-of-type > *:last-child {
   margin-bottom: 0 !important;
 }
-/* shrink vertical gutter for the 3-card row */
-section.container .row.g-4 { --bs-gutter-y: 0.5rem; }   /* try 0 or 0.5rem */
 
-/* remove extra padding on the sections that wrap the cards */
-section.container.py-5 { padding-top: 1rem !important; padding-bottom: 0 !important; }
+section.container .row.g-4 { --bs-gutter-y: 0.5rem; }
 
-/* kill any leftover spacing inside the last section */
-section.container:last-of-type { padding-bottom: 0 !important; margin-bottom: 0 !important; }
-section.container:last-of-type > *:last-child { margin-bottom: 0 !important; }
+section.container.py-5 {
+  padding-top: 1rem !important;
+  padding-bottom: 0 !important;
+}
 
-/* tighten the CTA so it doesn’t create tall empty space */
+/* tighten the CTA so it doesn’t create tall empty space (safe to keep even if not used) */
 .cta-card { padding: 1rem !important; }
 .cta-card > *:last-child { margin-bottom: 0 !important; }
-
-
-/* === Mobile === */
-@media (max-width: 576px) {
-  .navbarimg { height: 44px; }
-}
-
-/* Add a small side margin on phones for better breathing room */
-@media (max-width: 576px) {
-  /* keep the navbar offset while adding horizontal padding */
-  body {
-    /* preserve top padding (navbar) and add small horizontal padding */
-    padding-top: 84px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  /* Ensure containers don't overflow the new body padding */
-  .container {
-    box-sizing: border-box;
-  }
-}

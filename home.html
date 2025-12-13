@@ -1,90 +1,84 @@
-<!doctype html> <!-- מציין שהקובץ הוא דף HTML5 -->
-<html lang="en"> <!-- מגדיר את שפת הדף לאנגלית -->
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8"> <!-- תומך בתווים באנגלית, עברית ועוד -->
-  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- הופך את הדף לרספונסיבי למסכים קטנים -->
-  <title>Smart Cart | Home</title> <!-- הכותרת שמופיעה בלשונית הדפדפן -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Cart | Home</title>
 
-  <!-- קישור לספריית Bootstrap לעיצוב מהיר -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- קובץ ה-CSS האישי של העמוד -->
-  <link rel="stylesheet" href="home.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="home.css" />
 </head>
-
 <body>
 
-  <!-- סרגל ניווט עליון קבוע לכל האתר -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top"> <!-- fixed-top שומר את הניווט קבוע בראש הדף -->
-    <div class="container"> <!-- ממרכז את התוכן של הניווט -->
-      <a class="navbar-brand d-flex align-items-center" href="home.html"> <!-- לוגו וכיתוב יחד -->
-        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo"> <!-- תמונת לוגו -->
-        <span class="brand-text">Smart Cart</span> <!-- שם האתר -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo" />
+        <span class="brand-text">Smart Cart</span>
       </a>
 
-      <!-- כפתור שמופיע במסכים קטנים כדי לפתוח/לסגור את התפריט -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
               aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span> <!-- אייקון של "תפריט" (שלושה פסים) -->
+        <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- תפריט הקישורים -->
       <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3"> <!-- ms-auto מזיז את הקישורים לצד ימין -->
-          <li id="nav-admin" class="nav-item" style="display:none;"><a class="nav-link" href="openContact.html">Admin Panel</a></li>
-          <li id="nav-feedback" class="nav-item d-none"><a class="nav-link" href="feedback.html">Live Feed</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li> <!-- קישור לעמוד אודות -->
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> <!-- קישור לעמוד צור קשר -->
-          <li id="nav-auth" class="nav-item"><a class="nav-link" href="login.html">Login</a></li> <!-- קישור/שינוי כניסה/יציאה -->
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li id="nav-admin" class="nav-item" style="display:none;">
+            <a class="nav-link" href="openContact.html">Admin Panel</a>
+          </li>
+          <li id="nav-feedback" class="nav-item d-none">
+            <a class="nav-link" href="feedback.html">Live Feed</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li id="nav-auth" class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- החלק הראשי של הדף (Hero section) -->
-  <header class="container hero"> <!-- אזור עם כותרת גדולה ותמונה -->
-    <div class="row align-items-center g-4"> <!-- שורה עם ריווח בין אלמנטים -->
-      
-      <!-- צד שמאל: טקסט -->
-      <div class="col-12 col-lg-6"> <!-- תופס חצי מסך במחשב, מלא במובייל -->
-        <h1 class="display-5 fw-bold mb-3">Shopping made effortless</h1> <!-- כותרת ראשית -->
-        <p class="lead text-muted mb-4"> <!-- פסקה קצרה שמסבירה את הרעיון -->
+  <header class="container hero">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-lg-6">
+        <h1 class="display-5 fw-bold mb-3">Shopping made effortless</h1>
+        <p class="lead text-muted mb-4">
           Smart Cart follows you safely and smoothly—no pushing, no hassle. Powered by vision, sensors and on-device intelligence.
         </p>
-        <div class="d-flex flex-wrap gap-2"> <!-- שני כפתורים זה לצד זה -->
-          <a href="about.html" class="btn btn-primary btn-pill">Learn more</a> <!-- כפתור לכיוון עמוד אודות -->
-          <a href="contact.html" class="btn btn-outline-primary btn-pill">Get in touch</a> <!-- כפתור לכיוון עמוד צור קשר -->
+        <div class="d-flex flex-wrap gap-2">
+          <a href="about.html" class="btn btn-primary btn-pill">Learn more</a>
+          <a href="contact.html" class="btn btn-outline-primary btn-pill">Get in touch</a>
         </div>
       </div>
 
-      <!-- צד ימין: תמונה -->
       <div class="col-12 col-lg-6 text-center mx-auto">
         <video class="hero-video" autoplay muted loop playsinline>
-  <source src="shoping_cart_conept_animeted_final.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+          <source src="shoping_cart_conept_animeted_final.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </header>
 
-  <!-- מקטע עם שלושת היתרונות של Smart Cart -->
-  <section class="container py-5"> <!-- py-5 מוסיף רווח אנכי למעלה ולמטה -->
-    <h2 class="text-center mb-4">Why Smart Cart?</h2> <!-- כותרת המקטע -->
-    <div class="row g-4"> <!-- שלוש עמודות -->
-      <div class="col-12 col-md-4"> <!-- יתרון ראשון -->
-        <div class="feature-card h-100 p-4"> <!-- כרטיס עם צל וריווח פנימי -->
+  <section class="container py-5">
+    <h2 class="text-center mb-4">Why Smart Cart?</h2>
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="feature-card h-100 p-4">
           <h5 class="mb-2">Autonomous following</h5>
           <p class="mb-0 text-muted">Advanced camera & sensors identify and follow you reliably in-store.</p>
         </div>
       </div>
 
-      <div class="col-12 col-md-4"> <!-- יתרון שני -->
+      <div class="col-12 col-md-4">
         <div class="feature-card h-100 p-4">
           <h5 class="mb-2">Smooth control</h5>
           <p class="mb-0 text-muted">Microcontrollers & FPGA provide precise motion and real-time decisions.</p>
         </div>
       </div>
 
-      <div class="col-12 col-md-4"> <!-- יתרון שלישי -->
+      <div class="col-12 col-md-4">
         <div class="feature-card h-100 p-4">
           <h5 class="mb-2">Future-ready</h5>
           <p class="mb-0 text-muted">Roadmap includes product scanning, shelf navigation, and checkout-free payment.</p>
@@ -93,25 +87,26 @@
     </div>
   </section>
 
-  <!-- מקטע הסבר: איך זה עובד -->
   <section class="container py-5">
     <h2 class="text-center mb-4">How it works</h2>
     <div class="row g-4">
-      <div class="col-12 col-md-4"> <!-- שלב 1 -->
+      <div class="col-12 col-md-4">
         <div class="step-card p-4 h-100">
-          <span class="step-num">1</span> <!-- עיגול עם מספר השלב -->
+          <span class="step-num">1</span>
           <h6 class="mt-2">Identify</h6>
           <p class="text-muted mb-0">The cart recognizes you using computer vision.</p>
         </div>
       </div>
-      <div class="col-12 col-md-4"> <!-- שלב 2 -->
+
+      <div class="col-12 col-md-4">
         <div class="step-card p-4 h-100">
           <span class="step-num">2</span>
           <h6 class="mt-2">Follow</h6>
           <p class="text-muted mb-0">It follows your pace, avoiding obstacles safely.</p>
         </div>
       </div>
-      <div class="col-12 col-md-4"> <!-- שלב 3 -->
+
+      <div class="col-12 col-md-4">
         <div class="step-card p-4 h-100">
           <span class="step-num">3</span>
           <h6 class="mt-2">Assist</h6>
@@ -121,125 +116,11 @@
     </div>
   </section>
 
-  <!-- קבצי JavaScript של Bootstrap – מאפשרים תפריטים ואלמנטים אינטראקטיביים -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script type="module">
-    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-
-    const fbAuthConfig = {
-      apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
-      authDomain: "freecart11.firebaseapp.com",
-      projectId: "freecart11",
-      messagingSenderId: "369725415465",
-      appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
-    };
-
-    if (!getApps().length) initializeApp(fbAuthConfig);
-    const fbAuth = getAuth();
-
-    const navFeedback = document.getElementById('nav-feedback');
-    const navAuth = document.getElementById('nav-auth');
-
-    onAuthStateChanged(fbAuth, (user) => {
-      if (user) {
-        navFeedback?.classList.remove('d-none');
-        if (navAuth) {
-          navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
-          document.getElementById('nav-logout')?.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await signOut(fbAuth);
-            window.location.href = 'home.html';
-          });
-        }
-      } else {
-        navFeedback?.classList.add('d-none');
-        if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
-      }
-      const navAdmin = document.getElementById('nav-admin'); // הכפתור החדש
-const ADMINS = ["arielsh2006@gmail.com","gil.agmon1@gmail.com"];
-
-onAuthStateChanged(fbAuth, (user) => {
-  if (user) {
-    navFeedback?.classList.remove('d-none');
-
-    // Admin button
-    if (navAdmin) {
-      if (ADMINS.includes(user.email)) {
-        navAdmin.style.display = 'block';
-      } else {
-        navAdmin.style.display = 'none';
-      }
-    }
-
-    if (navAuth) {
-      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
-      document.getElementById('nav-logout')?.addEventListener('click', async (e) => {
-        e.preventDefault();
-        await signOut(fbAuth);
-        window.location.href = 'home.html';
-      });
-    }
-
-  } else {
-    navFeedback?.classList.add('d-none');
-    if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
-    if (navAdmin) navAdmin.style.display = 'none'; // מסתיר את הכפתור
-  }
-});
-
-    });
-  </script>
-
-  <!-- סקריפט קטן שמפעיל אפקטים וצללים כשגוללים את הדף -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => { // מריץ את הקוד אחרי שהדף נטען
-      const reveal = (selector) => { // פונקציה שחושפת אלמנטים עם אנימציה
-        const els = document.querySelectorAll(selector);
-        if (!('IntersectionObserver' in window)) { // בדיקה אם הדפדפן תומך באנימציה
-          els.forEach(e=>e.classList.add('show'));
-          return;
-        }
-        const io = new IntersectionObserver(entries => {
-          entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); }); // מוסיף מחלקת 'show' כשהאלמנט נכנס למסך
-        }, { threshold: 0.15 });
-        els.forEach(el => io.observe(el)); // עוקב אחרי כל אלמנט שנבחר
-      };
-      reveal('.feature-card');
-      reveal('.step-card');
-
-      // מסמן את הדף הנוכחי כ"פעיל" בתפריט הניווט
-      document.querySelectorAll('.nav-link').forEach(a=>{
-        if(location.pathname.toLowerCase().endsWith(a.getAttribute('href').toLowerCase())) 
-          a.classList.add('active');
-      });
-    });
-  </script>
   <footer class="footer">
-  <p>© 2025 Smart Cart. All rights reserved.</p>
-</footer>
-<script type="module">
-  // טעינה מה-CDN של Firebase (ללא Storage)
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-firestore.js";
+    <p>© 2025 Smart Cart. All rights reserved.</p>
+  </footer>
 
-  // ההגדרות שלך מ-Firebase Console
-  const firebaseConfig = {
-    apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
-    authDomain: "freecart11.firebaseapp.com",
-    projectId: "freecart11",
-    messagingSenderId: "369725415465",
-    appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
-  };
-
-  // אתחול Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  console.log("Firebase connected:", app.name);
-</script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="home.js"></script>
 </body>
 </html>
