@@ -83,13 +83,12 @@ onValue(videoServerIpRef, (snapshot) => {
   if (!pcIp) {
     cameraImg?.removeAttribute("src");
     equalizeCards();
-    return;
+    return; 
   }
 
   const url = `http://${pcIp}:5000/video`;
   if (cameraImg) cameraImg.src = url;
 
-  // removed: any "Streaming from ..." / status text
   equalizeCards();
 });
 
@@ -128,14 +127,6 @@ onValue(distanceRef, (snapshot) => {
   } else if (dist < 50) {
     icon = "bi-exclamation-triangle";
     label = "Near";
-  }
-
-  if (distanceEl) {
-    if (dist < 20) distanceEl.style.color = "#ff4d4d";
-    else if (dist < 50) distanceEl.style.color = "#ffcc00";
-    else distanceEl.style.color = "#00ff99";
-
-    distanceEl.innerHTML = `${dist} cm <i class="bi ${icon}" style="margin-left:6px;"></i>`;
   }
 
   if (proxText) {

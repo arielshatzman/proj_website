@@ -19,12 +19,16 @@ onAuthStateChanged(fbAuth, (user) => {
   if (user) {
     navFeedback?.classList.remove("d-none");
     if (navAuth) {
-      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
+      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(fbAuth);
         window.location.href = "home.html";
       });
+    const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
+    if (navAdmin) {
+      navAdmin.style.display = ADMINS.includes(user.email) ? "block" : "none";
+    }
     }
   } else {
     navFeedback?.classList.add("d-none");

@@ -28,7 +28,7 @@ onAuthStateChanged(fbAuth, (user) => {
     }
 
     if (navAuth) {
-      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
+      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(fbAuth);
@@ -40,13 +40,6 @@ onAuthStateChanged(fbAuth, (user) => {
     if (navAdmin) navAdmin.style.display = "none";
     if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
   }
-
-  // mark active link
-  document.querySelectorAll(".nav-link").forEach((a) => {
-    const href = a.getAttribute("href");
-    if (!href) return;
-    if (location.pathname.toLowerCase().endsWith(href.toLowerCase())) a.classList.add("active");
-  });
 });
 
 // Reveal cards on scroll

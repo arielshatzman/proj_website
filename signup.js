@@ -67,16 +67,13 @@ form?.addEventListener("submit", async (e) => {
   if (!terms) return alert("You must agree to the Terms.");
 
   try {
-    const cred = await createUserWithEmailAndPassword(auth, email, password);
-    const displayName = `${first} ${last}`.trim();
-    if (displayName) await updateProfile(cred.user, { displayName });
+    await createUserWithEmailAndPassword(auth, email, password);
     window.location.href = "home.html";
   } catch (err) {
     alert(err?.message || "Signup failed");
   }
 });
 
-// Logout button inside the “already logged in” box
 logoutBtn?.addEventListener("click", async () => {
   await signOut(auth);
 });

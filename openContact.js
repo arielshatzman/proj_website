@@ -22,7 +22,6 @@ const navAuth = document.getElementById("nav-auth");
 // Page elements
 const contactCards = document.getElementById("contactCards");
 
-// (Optional but recommended) lock this page to admins only
 const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
 
 // Expose actions for the inline buttons
@@ -50,14 +49,14 @@ const renderContacts = () => {
 
       card.innerHTML = `
         <div class="card-header">
-          ${data.firstName || ""} ${data.lastName || ""} 
+          ${data.firstName} ${data.lastName} 
           <small class="text-muted">${ts ? `(${ts})` : ""}</small>
         </div>
         <div class="card-body">
-          <p class="mb-1"><strong>Email:</strong> ${data.email || ""}</p>
-          <p class="mb-1"><strong>Topic:</strong> ${data.topic || ""}</p>
-          <p class="mb-1"><strong>Message:</strong> ${data.message || ""}</p>
-          <p class="mb-1"><strong>Preferred Contact:</strong> ${data.preferredContactMethod || ""}</p>
+          <p class="mb-1"><strong>Email:</strong> ${data.email}</p>
+          <p class="mb-1"><strong>Topic:</strong> ${data.topic}</p>
+          <p class="mb-1"><strong>Message:</strong> ${data.message}</p>
+          <p class="mb-1"><strong>Preferred Contact:</strong> ${data.preferredContactMethod}</p>
           <p class="mb-1"><strong>Updates:</strong> ${data.updates ? "Yes" : "No"}</p>
           <p class="mb-2"><strong>Status:</strong> ${data.status || "pending"}</p>
 
@@ -73,16 +72,10 @@ const renderContacts = () => {
 };
 
 onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    alert("Access denied. Only logged-in users can view this page.");
-    window.location.href = "login.html";
-    return;
-  }
-
   // Navbar UI
   navFeedback?.classList.remove("d-none");
   if (navAuth) {
-    navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
+    navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
     document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
       e.preventDefault();
       await signOut(auth);

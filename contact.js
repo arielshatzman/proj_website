@@ -23,7 +23,7 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     navFeedback?.classList.remove("d-none");
     if (navAuth) {
-      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
+      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(auth);

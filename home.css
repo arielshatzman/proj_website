@@ -85,6 +85,5 @@ section.container.py-5 {
   padding-bottom: 0 !important;
 }
 
-/* tighten the CTA so it doesn’t create tall empty space (safe to keep even if not used) */
 .cta-card { padding: 1rem !important; }
 .cta-card > *:last-child { margin-bottom: 0 !important; }

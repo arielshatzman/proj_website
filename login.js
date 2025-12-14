@@ -40,21 +40,13 @@ onAuthStateChanged(auth, (user) => {
     // Navbar UI
     navFeedback?.classList.remove("d-none");
     if (navAuth) {
-      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
+      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(auth);
         window.location.href = "home.html";
       });
     }
-  } else {
-    // Page UI
-    loggedInBox?.classList.add("d-none");
-    form?.classList.remove("d-none");
-
-    // Navbar UI
-    navFeedback?.classList.add("d-none");
-    if (navAuth) navAuth.innerHTML = `<a class="nav-link active" href="login.html">Login</a>`;
   }
 });
 
@@ -73,9 +65,4 @@ form?.addEventListener("submit", async (e) => {
   } catch (err) {
     alert(err?.message || "Login failed");
   }
-});
-
-// Logout button in the “already logged in” box
-logoutBtn?.addEventListener("click", async () => {
-  await signOut(auth);
 });
