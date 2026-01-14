@@ -18,6 +18,8 @@ const db = getDatabase();
 
 // Navbar elements
 const navFeedback = document.getElementById("nav-feedback");
+const navControl = document.getElementById("nav-control");
+const controlBtn = document.getElementById("controlBtn");
 const navAuth = document.getElementById("nav-auth");
 const navAdmin = document.getElementById("nav-admin");
 
@@ -28,6 +30,8 @@ const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
 onAuthStateChanged(fbAuth, (user) => {
   if (user) {
     navFeedback?.classList.remove("d-none");
+    navControl?.classList.remove("d-none");
+    controlBtn?.classList.remove("d-none");
 
     if (navAdmin) {
       navAdmin.style.display = ADMINS.includes(user.email) ? "block" : "none";
@@ -47,6 +51,8 @@ onAuthStateChanged(fbAuth, (user) => {
     }
   } else {
     navFeedback?.classList.add("d-none");
+    navControl?.classList.add("d-none");
+    controlBtn?.classList.add("d-none");
     if (navAdmin) navAdmin.style.display = "none";
     if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
   }
@@ -94,7 +100,7 @@ onValue(videoServerIpRef, (snapshot) => {
 
 /* SENSOR LOGIC */
 const distanceEl = document.getElementById("distanceValue");
-const distanceRef = ref(db, "sensor/distance");
+const distanceRef = ref(db, "fromAltera/A");
 
 onValue(distanceRef, (snapshot) => {
   const raw = snapshot.val();
@@ -109,10 +115,15 @@ onValue(distanceRef, (snapshot) => {
     return;
   }
 
-  const dist = Number(raw);
+  // raw may be a number or an object; try to extract a numeric distance
+  let candidate = raw;
+  if (typeof raw === 'object' && raw !== null) {
+    candidate = raw.distance ?? raw.dist ?? raw.prox ?? raw.value ?? raw.A ?? Object.values(raw)[0];
+  }
+  const dist = Number(candidate);
   if (Number.isNaN(dist)) {
-    if (distanceEl) distanceEl.textContent = String(raw);
-    if (proxText) proxText.innerHTML = `<div style="font-weight:600">Distance: ${raw}</div>`;
+    if (distanceEl) distanceEl.textContent = String(candidate);
+    if (proxText) proxText.innerHTML = `<div style="font-weight:600">Distance: ${candidate}</div>`;
     if (box) box.style.background = "#0b61a7";
     equalizeCards();
     return;

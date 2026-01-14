@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Control | Smart Cart</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="feedback_control.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="home.html">
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo" />
+        <span class="brand-text">Smart Cart</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li id="nav-admin" class="nav-item" style="display:none;"><a class="nav-link" href="openContact.html">Admin Panel</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li id="nav-feedback" class="nav-item d-none"><a class="nav-link" href="feedback.html">Live Feed</a></li>
+          <li id="nav-control" class="nav-item d-none"><a class="nav-link active" href="feedback_control.html">Control</a></li>
+          <li id="nav-auth" class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container-main">
+      <div style="min-height: calc(100vh - 160px); display:flex; align-items:center; justify-content:center; flex-direction:column;">
+      <div id="joystickArea" class="joystick-area">
+        <div id="joystickBase" class="joystick-base">
+          <div id="joystickKnob" class="joystick-knob"></div>
+        </div>
+      </div>
+
+      <div class="speed-controls mt-3">
+        <div class="btn-group" role="group" aria-label="Speed controls">
+          <button id="speed25" class="btn btn-outline-secondary btn-sm">25%</button>
+          <button id="speed50" class="btn btn-outline-secondary btn-sm active">50%</button>
+          <button id="speed75" class="btn btn-outline-secondary btn-sm">75%</button>
+          <button id="speed100" class="btn btn-outline-secondary btn-sm">100%</button>
+        </div>
+      </div>
+
+      <div class="box-controls mt-3">
+        <div class="btn-group" role="group" aria-label="Box controls">
+          <button id="boxOpen" class="btn btn-outline-secondary btn-sm">Open</button>
+          <button id="boxHalf" class="btn btn-outline-secondary btn-sm">Half</button>
+          <button id="boxClosed" class="btn btn-outline-secondary btn-sm">Closed</button>
+        </div>
+      </div>
+
+      <div class="to-altera mt-2 text-center">
+        <small>Last <code>/toAltera</code>:</small>
+        <span id="toAlteraVal">—</span>
+        <small class="ms-3">Last action:</small>
+        <span id="lastActionVal">—</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Smart Cart. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="feedback_control.js"></script>
+</body>

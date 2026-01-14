@@ -1,0 +1,23 @@
+/* Minimalist joystick-only styles */
+html, body { height: 100%; margin: 0; }
+.control-minimal { height: 100vh; display: flex; justify-content: center; align-items: center; background: #ffffff; }
+.joystick-area { display:flex; justify-content:center; align-items:center; }
+.joystick-base { width:260px; height:260px; border-radius:50%; background: radial-gradient(circle at 35% 35%, #f0f0f0, #d0d0d0); display:flex; align-items:center; justify-content:center; touch-action: none; }
+.joystick-knob { width:90px; height:90px; border-radius:50%; background: linear-gradient(#2a8bd0, #0b61a7); box-shadow: 0 8px 24px rgba(11,97,167,0.35); border: 3px solid #0b61a7; transition: transform 0.06s linear; }
+@media (max-width: 600px) { .joystick-base { width:200px; height:200px; } .joystick-knob { width:72px; height:72px; } }
+
+/* Speed controls */
+.speed-controls { margin-top: 0.75rem; display:flex; justify-content:center; }
+.speed-controls .btn.active { background-color: #0d6efd; color: #fff; border-color: #0d6efd; }
+
+/* Box controls */
+.box-controls { margin-top: 0.5rem; display:flex; justify-content:center; }
+.box-controls .btn.active { background-color: #0d6efd; color: #fff; border-color: #0d6efd; }
+
+/* Center footer text */
+.footer { text-align: center; padding: 1rem 0; }
+
+/* /toAltera indicator */
+.to-altera { margin-top: 0.5rem; font-weight: 600; color: #0b61a7; }
+.to-altera small { color: #6c757d; margin-right: 0.4rem; }
+#lastActionVal { margin-left: 0.4rem; color: #343a40; font-weight: 600; }
