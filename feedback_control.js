@@ -84,7 +84,7 @@ function computeDecimalCode(action, speedVal) {
   // Servo / box codes
   if (!action) return 0;
   const a = action.toString().toLowerCase();
-  if (a === 'open') return 131; // 180°
+  if (a === 'open') return 130; // 180°
   if (a === 'half') return 130; // 90°
   if (a === 'closed') return 128; // 0°
 
