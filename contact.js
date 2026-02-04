@@ -27,7 +27,7 @@ onAuthStateChanged(auth, (user) => {
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(auth);
-        window.location.href = "home.html";
+        window.location.href = "index.html";
       });
     }
   } else {

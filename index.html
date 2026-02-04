@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Cart | Home</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="logo_placeholder_loginpage copy.jpeg" class="navbarimg me-2" alt="Logo" />
+        <span class="brand-text">Smart Cart</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li id="nav-admin" class="nav-item" style="display:none;">
+            <a class="nav-link" href="openContact.html">Admin Panel</a>
+          </li>
+          <li id="nav-feedback" class="nav-item d-none">
+            <a class="nav-link" href="feedback.html">Live Feed</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li id="nav-auth" class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="container hero">
+    <div class="row align-items-center g-4">
+      <div class="col-12 col-lg-6">
+        <h1 class="display-5 fw-bold mb-3">Shopping made effortless</h1>
+        <p class="lead text-muted mb-4">
+          Smart Cart follows you safely and smoothly—no pushing, no hassle. Powered by vision, sensors and on-device intelligence.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="about.html" class="btn btn-primary btn-pill">Learn more</a>
+          <a href="contact.html" class="btn btn-outline-primary btn-pill">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6 text-center mx-auto">
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="shoping_cart_conept_animeted_final.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </header>
+
+  <section class="container py-5">
+    <h2 class="text-center mb-4">Why Smart Cart?</h2>
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="feature-card h-100 p-4">
+          <h5 class="mb-2">Autonomous following</h5>
+          <p class="mb-0 text-muted">Advanced camera & sensors identify and follow you reliably in-store.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="feature-card h-100 p-4">
+          <h5 class="mb-2">Smooth control</h5>
+          <p class="mb-0 text-muted">Microcontrollers & FPGA provide precise motion and real-time decisions.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="feature-card h-100 p-4">
+          <h5 class="mb-2">Future-ready</h5>
+          <p class="mb-0 text-muted">Roadmap includes product scanning, shelf navigation, and checkout-free payment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container py-5">
+    <h2 class="text-center mb-4">How it works</h2>
+    <div class="row g-4">
+      <div class="col-12 col-md-4">
+        <div class="step-card p-4 h-100">
+          <span class="step-num">1</span>
+          <h6 class="mt-2">Identify</h6>
+          <p class="text-muted mb-0">The cart recognizes you using computer vision.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="step-card p-4 h-100">
+          <span class="step-num">2</span>
+          <h6 class="mt-2">Follow</h6>
+          <p class="text-muted mb-0">It follows your pace, avoiding obstacles safely.</p>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="step-card p-4 h-100">
+          <span class="step-num">3</span>
+          <h6 class="mt-2">Assist</h6>
+          <p class="text-muted mb-0">Optional add-ons: scanning, navigation, and payments.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Smart Cart. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="index.js"></script>
+</body>
+</html>

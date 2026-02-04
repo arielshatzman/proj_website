@@ -44,7 +44,7 @@ onAuthStateChanged(auth, (user) => {
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(auth);
-        window.location.href = "home.html";
+        window.location.href = "index.html";
       });
     }
   }
@@ -61,7 +61,7 @@ form?.addEventListener("submit", async (e) => {
   try {
     await setPersistence(auth, remember ? browserLocalPersistence : browserSessionPersistence);
     await signInWithEmailAndPassword(auth, email, password);
-    window.location.href = "home.html";
+    window.location.href = "index.html";
   } catch (err) {
     alert(err?.message || "Login failed");
   }

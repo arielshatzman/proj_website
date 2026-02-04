@@ -12,12 +12,21 @@ const fbAuthConfig = {
 if (!getApps().length) initializeApp(fbAuthConfig);
 
 const fbAuth = getAuth();
+
 const navFeedback = document.getElementById("nav-feedback");
 const navAuth = document.getElementById("nav-auth");
+const navAdmin = document.getElementById("nav-admin");
+
+const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
 
 onAuthStateChanged(fbAuth, (user) => {
   if (user) {
     navFeedback?.classList.remove("d-none");
+
+    if (navAdmin) {
+      navAdmin.style.display = ADMINS.includes(user.email) ? "block" : "none";
+    }
+
     if (navAuth) {
       navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
@@ -25,13 +34,29 @@ onAuthStateChanged(fbAuth, (user) => {
         await signOut(fbAuth);
         window.location.href = "index.html";
       });
-    const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
-    if (navAdmin) {
-      navAdmin.style.display = ADMINS.includes(user.email) ? "block" : "none";
-    }
     }
   } else {
     navFeedback?.classList.add("d-none");
+    if (navAdmin) navAdmin.style.display = "none";
     if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
   }
+});
+
+// Reveal cards on scroll
+document.addEventListener("DOMContentLoaded", () => {
+  const reveal = (selector) => {
+    const els = document.querySelectorAll(selector);
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((e) => e.classList.add("show"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("show")),
+      { threshold: 0.15 }
+    );
+    els.forEach((el) => io.observe(el));
+  };
+
+  reveal(".feature-card");
+  reveal(".step-card");
 });

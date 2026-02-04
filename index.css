@@ -1,0 +1,89 @@
+/* === Hero media === */
+.hero-video {
+  max-width: 520px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.12);
+}
+
+/* === Hero === */
+.hero {
+  min-height: calc(100vh - 84px); /* viewport minus navbar */
+  display: flex;
+  align-items: center;
+  padding: 32px 0;
+}
+
+.btn-pill {
+  border-radius: 9999px;
+  padding: .6rem 1.2rem;
+}
+
+/* === Cards & Sections === */
+.feature-card,
+.step-card,
+.cta-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.06);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .5s ease, transform .35s ease, box-shadow .2s ease;
+}
+
+.feature-card.show,
+.step-card.show,
+.cta-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-card:hover,
+.step-card:hover {
+  box-shadow: 0 18px 38px rgba(0,0,0,.10);
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e8f0fe;
+  color: #0d6efd;
+  font-weight: 700;
+}
+
+.cta-card { text-align: center; }
+
+/* === Footer === */
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  background: transparent;
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* === Trim bottom scroll === */
+section.container:last-of-type {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+section.container:last-of-type > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+section.container .row.g-4 { --bs-gutter-y: 0.5rem; }
+
+section.container.py-5 {
+  padding-top: 1rem !important;
+  padding-bottom: 0 !important;
+}
+
+.cta-card { padding: 1rem !important; }
+.cta-card > *:last-child { margin-bottom: 0 !important; }

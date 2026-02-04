@@ -79,14 +79,14 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
       e.preventDefault();
       await signOut(auth);
-      window.location.href = "home.html";
+      window.location.href = "index.html";
     });
   }
 
   // Admin gate
   if (!ADMINS.includes(user.email)) {
     alert("Access denied. Admins only.");
-    window.location.href = "home.html";
+    window.location.href = "index.html";
     return;
   }
 

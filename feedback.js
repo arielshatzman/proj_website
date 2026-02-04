@@ -46,7 +46,7 @@ onAuthStateChanged(fbAuth, (user) => {
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(fbAuth);
-        window.location.href = "home.html";
+        window.location.href = "index.html";
       });
     }
   } else {
