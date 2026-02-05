@@ -92,7 +92,9 @@ function computeDecimalCode(action, speedVal) {
   // speedVal maps to index 0..3 (25/50/75/100)
   const idx = speedValToIndex(speedVal === undefined ? currentSpeed : speedVal);
   if (a === 'backward') return 74 + 16 * idx;
-  if (a === 'forward' || a === 'left' || a === 'right') return 69 + 16 * idx;
+  if (a === 'forward') return 69 + 16 * idx;
+  if (a === 'left') return (idx === 3) ? 113 : 69 + 16 * idx;
+  if (a === 'right') return (idx === 3) ? 116 : 69 + 16 * idx;
   if (a === 'stop') return 63;
   return 0;
 }
