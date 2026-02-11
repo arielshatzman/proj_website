@@ -61,10 +61,8 @@ async function clearExistingHistory() {
   }
 }
 
-// Attempt to clear any existing history entries on load
 clearExistingHistory();
 
-// Keep last control state and forward as a single decimal code to /toAltera
 const controlLastRef = ref(db, 'control/last');
 const lastControl = { action: null, speed: null };
 
@@ -73,7 +71,6 @@ function speedValToIndex(s) {
   if (s === 0.5) return 1;
   if (s === 0.75) return 2;
   if (s === 1.0) return 3;
-  // fallback: try to map numbers close to those
   if (s > 0.875) return 3;
   if (s > 0.625) return 2;
   if (s > 0.375) return 1;
@@ -81,15 +78,12 @@ function speedValToIndex(s) {
 }
 
 function computeDecimalCode(action, speedVal) {
-  // Servo / box codes
   if (!action) return 0;
   const a = action.toString().toLowerCase();
-  if (a === 'open') return 130; // 180°
-  if (a === 'half') return 130; // 90°
-  if (a === 'closed') return 128; // 0°
+  if (a === 'open') return 130;
+  if (a === 'half') return 130;
+  if (a === 'closed') return 128;
 
-  // DC motor codes
-  // speedVal maps to index 0..3 (25/50/75/100)
   const idx = speedValToIndex(speedVal === undefined ? currentSpeed : speedVal);
   if (a === 'backward') return 74 + 16 * idx;
   if (a === 'forward') return 69 + 16 * idx;
@@ -111,10 +105,6 @@ onValue(controlLastRef, (snapshot) => {
     .catch(err => log('Failed to set /toAltera code:', err));
 });
 
-
-
-// Initialization from pasted JSON removed — this page uses the site's Firebase configuration (same as Feedback).
-
 function disableFirebase() {
   firebaseEnabled = false;
   log('Firebase disabled');
@@ -123,7 +113,6 @@ function disableFirebase() {
 async function sendToFirebase(path, payload) {
   if (!firebaseEnabled || !db) return log('Firebase not initialized');
   try {
-    // Only update the /last entry - do not save history
     await set(ref(db, `${path}/last`), payload);
     log('Firebase TX: ' + JSON.stringify(payload));
   } catch (err) {
@@ -131,14 +120,10 @@ async function sendToFirebase(path, payload) {
   }
 }
 
-// No extra UI listeners in minimalist mode
-
-// Joystick and command sending
 let currentSpeed = 0.5;
 
 function setSpeed(val) {
   currentSpeed = val;
-  // update UI active state
   ['speed25','speed50','speed75','speed100'].forEach(id => {
     const btn = document.getElementById(id);
     if (btn) btn.classList.remove('active');
@@ -146,8 +131,6 @@ function setSpeed(val) {
   const id = val === 0.25 ? 'speed25' : val === 0.5 ? 'speed50' : val === 0.75 ? 'speed75' : 'speed100';
   const activeBtn = document.getElementById(id);
   if (activeBtn) activeBtn.classList.add('active');
-
-  // Compute code using last action + new speed and set as single decimal to /toAltera
   const action = lastControl.action || null;
   const code = computeDecimalCode(action, val);
   set(ref(db, 'toAltera'), code)
@@ -159,7 +142,7 @@ const base = document.getElementById('joystickBase');
 const knob = document.getElementById('joystickKnob');
 let pointerId = null;
 let center = { x: 0, y: 0 };
-let maxRadius = 70; // px
+let maxRadius = 70;
 let currentDir = null;
 
 function setKnobPosition(x, y) {
@@ -175,9 +158,7 @@ function calcDirection(dx, dy) {
 }
 
 async function sendCommand(payload) {
-  // Include selected speed in payload (if provided use payload.speed, otherwise currentSpeed)
   const speed = (payload && payload.speed !== undefined) ? payload.speed : currentSpeed;
-  // normalize action to lowercase string to avoid accidental casing issues
   const action = payload && payload.action ? String(payload.action).toLowerCase() : null;
   const toSend = { device: payload.device, action: action, speed };
   await sendToFirebase('control', toSend);
@@ -218,7 +199,6 @@ function onPointerUp(e) {
   sendCommand({ device: 'motor', action: 'stop' });
 }
 
-// Guard and UI update on /control/last listener: only forward motor actions to /toAltera
 onValue(controlLastRef, (snapshot) => {
   const val = snapshot.val();
   if (!val) return;
@@ -246,14 +226,12 @@ base.addEventListener('pointerup', onPointerUp);
 base.addEventListener('pointercancel', onPointerUp);
 base.addEventListener('touchstart', (e) => e.preventDefault(), { passive:false });
 
-// Speed button handlers
 ['speed25','speed50','speed75','speed100'].forEach(id => {
   const map = { 'speed25':0.25,'speed50':0.5,'speed75':0.75,'speed100':1.0 };
   const el = document.getElementById(id);
   if (el) el.addEventListener('click', () => setSpeed(map[id]));
 });
 
-// Box control handlers
 function setBox(val) {
   ['boxOpen','boxHalf','boxClosed'].forEach(id => {
     const btn = document.getElementById(id);
@@ -262,8 +240,6 @@ function setBox(val) {
   const id = val === 'open' ? 'boxOpen' : val === 'half' ? 'boxHalf' : 'boxClosed';
   const activeBtn = document.getElementById(id);
   if (activeBtn) activeBtn.classList.add('active');
-
-  // Map box states to servo decimal codes and set that number to /toAltera
   const code = computeDecimalCode(val, currentSpeed);
   set(ref(db, 'toAltera'), code)
     .then(() => log('Box change -> set /toAltera to', code))
@@ -275,7 +251,6 @@ function setBox(val) {
   if (el) el.addEventListener('click', () => setBox(id === 'boxOpen' ? 'open' : id === 'boxHalf' ? 'half' : 'closed'));
 });
 
-// ensure default speed button is active
 setTimeout(() => {
   const btn = document.getElementById('speed50');
   if (btn) btn.classList.add('active');
@@ -283,7 +258,7 @@ setTimeout(() => {
 
 log('Control page ready. Minimal joystick UI loaded.');
 
-// Live /toAltera indicator for debugging: show the numeric code written to DB
+
 const toAlteraRef = ref(db, 'toAltera');
 const toAlteraEl = document.getElementById('toAlteraVal');
 onValue(toAlteraRef, (snap) => {

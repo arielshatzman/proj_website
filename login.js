@@ -21,23 +21,18 @@ if (!getApps().length) initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-// Page elements
 const form = document.getElementById("loginForm");
 const loggedInBox = document.getElementById("loggedInBox");
 const logoutBtn = document.getElementById("logoutBtn");
 
-// Navbar elements
 const navFeedback = document.getElementById("nav-feedback");
 const navAuth = document.getElementById("nav-auth");
 
-// Auth state (controls both navbar + page)
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // Page UI
     loggedInBox?.classList.remove("d-none");
     form?.classList.add("d-none");
 
-    // Navbar UI
     navFeedback?.classList.remove("d-none");
     if (navAuth) {
       navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
@@ -50,7 +45,6 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Login submit
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 

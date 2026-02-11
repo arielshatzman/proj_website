@@ -15,7 +15,6 @@ if (!getApps().length) initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getDatabase();
 
-// Navbar elements
 const navFeedback = document.getElementById("nav-feedback");
 const navAuth = document.getElementById("nav-auth");
 
@@ -24,7 +23,6 @@ const contactCards = document.getElementById("contactCards");
 
 const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
 
-// Expose actions for the inline buttons
 window.updateStatus = (id, status) => update(ref(db, `contacts/${id}`), { status });
 window.deleteContact = (id) => remove(ref(db, `contacts/${id}`));
 
@@ -72,7 +70,6 @@ const renderContacts = () => {
 };
 
 onAuthStateChanged(auth, (user) => {
-  // Navbar UI
   navFeedback?.classList.remove("d-none");
   if (navAuth) {
     navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email})</a>`;
@@ -83,7 +80,6 @@ onAuthStateChanged(auth, (user) => {
     });
   }
 
-  // Admin gate
   if (!ADMINS.includes(user.email)) {
     alert("Access denied. Admins only.");
     window.location.href = "index.html";

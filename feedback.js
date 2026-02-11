@@ -55,7 +55,6 @@ const equalizeCards = () => {
 document.addEventListener("DOMContentLoaded", equalizeCards);
 window.addEventListener("resize", () => requestAnimationFrame(equalizeCards));
 
-/* CAMERA LOGIC */
 const cameraImg = document.getElementById("cameraFeed");
 const videoServerIpRef = ref(db, "video_server/ip");
 
@@ -70,7 +69,6 @@ onValue(videoServerIpRef, (snapshot) => {
   let finalUrl;
   const cleanIp = pcIp.trim().replace(/\/$/, ""); 
 
-  // במנוי בתשלום הכתובת תהיה https://something.ngrok-free.dev
   if (cleanIp.startsWith("http")) {
     finalUrl = `${cleanIp}/video`;
   } else {
@@ -78,7 +76,6 @@ onValue(videoServerIpRef, (snapshot) => {
   }
 
   if (cameraImg) {
-    // הוספת Timestamp למניעת טעינת תמונה "שבורה" מהמטמון
     cameraImg.src = finalUrl + "?t=" + new Date().getTime();
     console.log("Loading Stream:", finalUrl);
   }
@@ -86,7 +83,6 @@ onValue(videoServerIpRef, (snapshot) => {
   equalizeCards();
 });
 
-/* SENSOR LOGIC */
 const distanceEl = document.getElementById("distanceValue");
 const distanceRef = ref(db, "fromAltera/A");
 

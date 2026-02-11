@@ -19,16 +19,13 @@ if (!getApps().length) initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-// Page elements
 const form = document.getElementById("signupForm");
 const loggedInBox = document.getElementById("loggedInBox");
 const logoutBtn = document.getElementById("logoutBtn");
 
-// Navbar elements
 const navFeedback = document.getElementById("nav-feedback");
 const navAuth = document.getElementById("nav-auth");
 
-// Auth state controls page + navbar
 onAuthStateChanged(auth, (user) => {
   if (user) {
     loggedInBox?.classList.remove("d-none");
@@ -52,7 +49,6 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Signup submit
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
 

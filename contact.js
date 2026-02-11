@@ -15,7 +15,6 @@ if (!getApps().length) initializeApp(firebaseConfig);
 const db = getDatabase(undefined, firebaseConfig.databaseURL);
 const auth = getAuth();
 
-// Navbar auth
 const navFeedback = document.getElementById("nav-feedback");
 const navAuth = document.getElementById("nav-auth");
 
@@ -36,7 +35,6 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Form submission
 const form = document.getElementById("contactForm");
 const submitBtn = document.getElementById("submitBtn");
 
@@ -82,7 +80,6 @@ form.addEventListener("submit", (e) => {
     });
 });
 
-// Animate card entrance
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".contact-card")?.classList.add("show");
 });

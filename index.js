@@ -42,7 +42,6 @@ onAuthStateChanged(fbAuth, (user) => {
   }
 });
 
-// Reveal cards on scroll
 document.addEventListener("DOMContentLoaded", () => {
   const reveal = (selector) => {
     const els = document.querySelectorAll(selector);
