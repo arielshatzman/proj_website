@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("resize", () => requestAnimationFrame(equalizeCards));
 
-/* CAMERA LOGIC */
+/* CAMERA LOGIC - FIXED FOR NGROK & LOCAL IP */
 const cameraImg = document.getElementById("cameraFeed");
 
 cameraImg?.addEventListener("load", equalizeCards);
@@ -92,8 +92,20 @@ onValue(videoServerIpRef, (snapshot) => {
     return; 
   }
 
-  const url = `http://${pcIp}:5000/video`;
-  if (cameraImg) cameraImg.src = url;
+  // תיקון קריטי: בודק אם הכתובת מגיעה עם http (מ-ngrok) או שהיא רק IP
+  let url;
+  if (pcIp.startsWith("http")) {
+    // אם זה ngrok, הכתובת כבר מושלמת, רק מוסיפים את הנתיב /video
+    url = `${pcIp}/video`;
+  } else {
+    // אם זה IP מקומי, מוסיפים פרוטוקול ופורט 5000
+    url = `http://${pcIp}:5000/video`;
+  }
+
+  if (cameraImg) {
+    cameraImg.src = url;
+    console.log("Camera Stream URL:", url); // להדפסה ב-Console של הדפדפן לצורך דיבאג
+  }
 
   equalizeCards();
 });
@@ -115,7 +127,6 @@ onValue(distanceRef, (snapshot) => {
     return;
   }
 
-  // raw may be a number or an object; try to extract a numeric distance
   let candidate = raw;
   if (typeof raw === 'object' && raw !== null) {
     candidate = raw.distance ?? raw.dist ?? raw.prox ?? raw.value ?? raw.A ?? Object.values(raw)[0];
