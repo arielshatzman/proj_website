@@ -55,20 +55,22 @@ const equalizeCards = () => {
 document.addEventListener("DOMContentLoaded", equalizeCards);
 window.addEventListener("resize", () => requestAnimationFrame(equalizeCards));
 
-/* CAMERA LOGIC - הזרקה נקייה */
+/* CAMERA LOGIC */
 const cameraImg = document.getElementById("cameraFeed");
 const videoServerIpRef = ref(db, "video_server/ip");
 
 onValue(videoServerIpRef, (snapshot) => {
   const pcIp = snapshot.val();
   if (!pcIp) {
+    console.warn("No Camera IP found in Firebase");
     cameraImg?.removeAttribute("src");
     return;
   }
 
   let finalUrl;
-  const cleanIp = pcIp.trim().replace(/\/$/, ""); // ניקוי רווחים וסלאש בסוף
+  const cleanIp = pcIp.trim().replace(/\/$/, ""); 
 
+  // במנוי בתשלום הכתובת תהיה https://something.ngrok-free.dev
   if (cleanIp.startsWith("http")) {
     finalUrl = `${cleanIp}/video`;
   } else {
@@ -76,9 +78,9 @@ onValue(videoServerIpRef, (snapshot) => {
   }
 
   if (cameraImg) {
-    // הוספת Timestamp למניעת Cache (מטמון) של תמונה שבורה
+    // הוספת Timestamp למניעת טעינת תמונה "שבורה" מהמטמון
     cameraImg.src = finalUrl + "?t=" + new Date().getTime();
-    console.log("Camera Stream URL:", finalUrl);
+    console.log("Loading Stream:", finalUrl);
   }
   
   equalizeCards();
