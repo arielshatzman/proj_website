@@ -16,33 +16,20 @@ if (!getApps().length) initializeApp(fbAuthConfig);
 const fbAuth = getAuth();
 const db = getDatabase();
 
-// Navbar elements
 const navFeedback = document.getElementById("nav-feedback");
-const navControl = document.getElementById("nav-control");
 const controlBtn = document.getElementById("controlBtn");
 const navAuth = document.getElementById("nav-auth");
 const navAdmin = document.getElementById("nav-admin");
 
-// Admin emails
 const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
 
-// Navbar auth + admin link
 onAuthStateChanged(fbAuth, (user) => {
   if (user) {
     navFeedback?.classList.remove("d-none");
-    navControl?.classList.remove("d-none");
     controlBtn?.classList.remove("d-none");
-
-    if (navAdmin) {
-      navAdmin.style.display = ADMINS.includes(user.email) ? "block" : "none";
-    }
-
+    if (navAdmin) navAdmin.style.display = ADMINS.includes(user.email) ? "block" : "none";
     if (navAuth) {
-      navAuth.innerHTML = `
-        <a class="nav-link" href="#" id="nav-logout">
-          Logout (${user.email || user.uid})
-        </a>
-      `;
+      navAuth.innerHTML = `<a class="nav-link" href="#" id="nav-logout">Logout (${user.email || user.uid})</a>`;
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(fbAuth);
@@ -51,62 +38,49 @@ onAuthStateChanged(fbAuth, (user) => {
     }
   } else {
     navFeedback?.classList.add("d-none");
-    navControl?.classList.add("d-none");
     controlBtn?.classList.add("d-none");
     if (navAdmin) navAdmin.style.display = "none";
     if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
   }
 });
 
-// CARD HEIGHT SYNC
 const equalizeCards = () => {
   const cards = Array.from(document.querySelectorAll(".custom-card"));
   if (!cards.length) return;
-
-  cards.forEach((card) => (card.style.height = "auto"));
-  const maxHeight = Math.max(...cards.map((card) => card.getBoundingClientRect().height));
-  cards.forEach((card) => (card.style.height = `${maxHeight}px`));
+  cards.forEach(c => c.style.height = "auto");
+  const max = Math.max(...cards.map(c => c.getBoundingClientRect().height));
+  cards.forEach(c => c.style.height = `${max}px`);
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".hero, .hero-video, .hero-img, video.hero-video").forEach((el) => el.remove());
-  equalizeCards();
-});
-
+document.addEventListener("DOMContentLoaded", equalizeCards);
 window.addEventListener("resize", () => requestAnimationFrame(equalizeCards));
 
-/* CAMERA LOGIC - FIXED FOR NGROK & LOCAL IP */
+/* CAMERA LOGIC - הזרקה נקייה */
 const cameraImg = document.getElementById("cameraFeed");
-
-cameraImg?.addEventListener("load", equalizeCards);
-cameraImg?.addEventListener("error", equalizeCards);
-
 const videoServerIpRef = ref(db, "video_server/ip");
 
 onValue(videoServerIpRef, (snapshot) => {
   const pcIp = snapshot.val();
-
   if (!pcIp) {
     cameraImg?.removeAttribute("src");
-    equalizeCards();
-    return; 
+    return;
   }
 
-  // תיקון קריטי: בודק אם הכתובת מגיעה עם http (מ-ngrok) או שהיא רק IP
-  let url;
-  if (pcIp.startsWith("http")) {
-    // אם זה ngrok, הכתובת כבר מושלמת, רק מוסיפים את הנתיב /video
-    url = `${pcIp}/video`;
+  let finalUrl;
+  const cleanIp = pcIp.trim().replace(/\/$/, ""); // ניקוי רווחים וסלאש בסוף
+
+  if (cleanIp.startsWith("http")) {
+    finalUrl = `${cleanIp}/video`;
   } else {
-    // אם זה IP מקומי, מוסיפים פרוטוקול ופורט 5000
-    url = `http://${pcIp}:5000/video`;
+    finalUrl = `http://${cleanIp}:5000/video`;
   }
 
   if (cameraImg) {
-    cameraImg.src = url;
-    console.log("Camera Stream URL:", url); // להדפסה ב-Console של הדפדפן לצורך דיבאג
+    // הוספת Timestamp למניעת Cache (מטמון) של תמונה שבורה
+    cameraImg.src = finalUrl + "?t=" + new Date().getTime();
+    console.log("Camera Stream URL:", finalUrl);
   }
-
+  
   equalizeCards();
 });
 
@@ -120,56 +94,29 @@ onValue(distanceRef, (snapshot) => {
   const box = proxText?.closest(".placeholder-box");
 
   if (raw === null || raw === undefined) {
-    if (distanceEl) distanceEl.textContent = "No sensor data";
-    if (proxText) proxText.innerHTML = '<div style="font-weight:600">No sensor data</div>';
+    if (distanceEl) distanceEl.textContent = "No data";
     if (box) box.style.background = "#0b61a7";
-    equalizeCards();
     return;
   }
 
-  let candidate = raw;
-  if (typeof raw === 'object' && raw !== null) {
-    candidate = raw.distance ?? raw.dist ?? raw.prox ?? raw.value ?? raw.A ?? Object.values(raw)[0];
-  }
-  const dist = Number(candidate);
-  if (Number.isNaN(dist)) {
-    if (distanceEl) distanceEl.textContent = String(candidate);
-    if (proxText) proxText.innerHTML = `<div style="font-weight:600">Distance: ${candidate}</div>`;
-    if (box) box.style.background = "#0b61a7";
-    equalizeCards();
+  let dist = Number(typeof raw === 'object' ? (raw.A || Object.values(raw)[0]) : raw);
+  
+  if (isNaN(dist)) {
+    if (distanceEl) distanceEl.textContent = "Error";
     return;
   }
 
-  let icon = "bi-check-circle";
-  let label = "Clear";
-
-  if (dist < 20) {
-    icon = "bi-exclamation-octagon";
-    label = "Too close";
-  } else if (dist < 50) {
-    icon = "bi-exclamation-triangle";
-    label = "Near";
-  }
+  let icon = "bi-check-circle", label = "Clear", color = "#0b61a7";
+  if (dist < 20) { icon = "bi-exclamation-octagon"; label = "Too close"; color = "#ff4d4d"; }
+  else if (dist < 50) { icon = "bi-exclamation-triangle"; label = "Near"; color = "#ffcc00"; }
 
   if (proxText) {
     proxText.innerHTML = `
-      <div style="font-size:40px; font-weight:700;margin-top:0px;">
-        <i class="bi ${icon}" style="margin-right:8px;"></i>
-      </div>
-      <div style="font-size:22px; font-weight:700;">
-        Distance: ${dist} cm
-      </div>
-      <div style="font-size:14px; opacity:0.9; margin-top:.25rem;">
-        ${label}
-      </div>
+      <div style="font-size:40px; font-weight:700;"><i class="bi ${icon}"></i></div>
+      <div style="font-size:22px; font-weight:700;">Distance: ${dist} cm</div>
+      <div style="font-size:14px; opacity:0.9;">${label}</div>
     `;
   }
-
-  if (box) {
-    if (dist < 20) box.style.background = "#ff4d4d";
-    else if (dist < 50) box.style.background = "#ffcc00";
-    else box.style.background = "#0b61a7";
-  }
-
+  if (box) box.style.background = color;
   equalizeCards();
 });
