@@ -2,11 +2,11 @@ import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/12.5.
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
 const fbAuthConfig = {
-  apiKey: "AIzaSyAZpdtDkHAmCz9GosbJ-PkO4KM2iaNTfHQ",
-  authDomain: "freecart11.firebaseapp.com",
-  projectId: "freecart11",
-  messagingSenderId: "369725415465",
-  appId: "1:369725415465:web:8beecb3baf985ddddb7c38"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 if (!getApps().length) initializeApp(fbAuthConfig);
