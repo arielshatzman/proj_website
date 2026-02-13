@@ -33,14 +33,14 @@ onAuthStateChanged(fbAuth, (user) => {
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(fbAuth);
-        window.location.href = "index.html";
+        window.location.href = "/proj_website/index.html";
       });
     }
   } else {
     navFeedback?.classList.add("d-none");
     controlBtn?.classList.add("d-none");
     if (navAdmin) navAdmin.style.display = "none";
-    if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="login.html">Login</a>`;
+    if (navAuth) navAuth.innerHTML = `<a class="nav-link" href="/proj_website/login.html">Login</a>`;
   }
 });
 

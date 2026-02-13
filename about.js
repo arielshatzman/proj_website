@@ -23,7 +23,7 @@ onAuthStateChanged(fbAuth, (user) => {
       document.getElementById("nav-logout")?.addEventListener("click", async (e) => {
         e.preventDefault();
         await signOut(fbAuth);
-        window.location.href = "index.html";
+        window.location.href = "/proj_website/index.html";
       });
     const ADMINS = ["arielsh2006@gmail.com", "gil.agmon1@gmail.com"];
     if (navAdmin) {
